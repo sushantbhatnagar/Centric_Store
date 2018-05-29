@@ -2,4 +2,4 @@ default: --no-source --color --format pretty
 
 html_report: --format progress --format html --out=features.report.html
 
-centric_shop: FIG_NEWTON_FILE=centric_shop_store.yml --profile default --profile html_report
+centric_shop: FIG_NEWTON_FILE=centric_shop_store.yml --profile default #--profile html_report
