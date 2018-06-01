@@ -14,7 +14,7 @@ RSpec.configure do |config|
     @browser = Watir::Browser.new :chrome
   end
 
-  # config.after do
-  #   @browser.close
-  # end
+  config.after do
+    @browser.close
+  end
 end
