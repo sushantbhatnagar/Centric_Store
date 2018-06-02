@@ -1,0 +1,10 @@
+registeration_details:
+  first_name: 'Sushant'
+  last_name: 'Bhatnagar'
+  day: '10'
+  month: 'May'
+  year: '1991'
+  email: 'sushantbhatnagar1991@centric.com'
+  company: 'Centric Consulting'
+  password: 'saibaba1234$'
+  confirm_password: 'saibaba1234$'

@@ -11,3 +11,5 @@
 9. RubyCritic
 10. Guard
 
+11. ajax calls
+
