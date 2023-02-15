@@ -8,3 +8,6 @@ registeration_details:
   company: 'Centric Consulting'
   password: 'saibaba1234$'
   confirm_password: 'saibaba1234$'
+login_creds:
+  email: 'sushantbhatnagar1991@centric.com'
+  password: 'saibaba1234$'

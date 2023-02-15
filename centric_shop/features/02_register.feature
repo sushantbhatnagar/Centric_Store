@@ -12,3 +12,8 @@ Feature: Registration
     """
     Your registration completed
     """
+
+  @login @automation @functional @test
+  Scenario: Login to Centric Shopping Store
+    Given I land on the shopping website homepage
+    When I login to the website

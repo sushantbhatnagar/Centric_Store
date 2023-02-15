@@ -1,6 +1,7 @@
 # Home Page of the Centric Shopping Store
+
+require_all 'lib'
 class HomePage < ShopBasePage
-  include FigNewton
 
   page_url FigNewton.base_url
 

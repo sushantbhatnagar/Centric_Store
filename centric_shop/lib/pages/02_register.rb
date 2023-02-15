@@ -1,3 +1,5 @@
+require_all 'lib'
+
 class Register < ShopBasePage
 
   radio_button(:male, id: 'gender-male')
