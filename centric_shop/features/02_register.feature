@@ -13,7 +13,7 @@ Feature: Registration
     Your registration completed
     """
 
-  @login @automation @functional @test
+  @login @automation @functional @test @test_case_54321
   Scenario: Login to Centric Shopping Store
     Given I land on the shopping website homepage
     When I login to the website
