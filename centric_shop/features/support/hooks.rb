@@ -1,7 +1,10 @@
-require_relative '../../metadata.rb'
-
+# require_relative '../../metadata/metadata.rb'
+# require_relative '../../metadata/test_run.rb'
+require_all 'metadata'
 
 Before do |scenario|
+  Metadata.instance.clear_metadata
+  TestRun.state = 'SCENARIO_RUNNING'
   Metadata.instance.set_base_data(self)
   Metadata.instance.set_scenario_data(scenario)
   @browser = Watir::Browser.new :chrome
@@ -17,11 +20,8 @@ After do |scenario|
       puts e.message
     end
   end
+  Metadata.instance.update_scenario_status(scenario)
   Metadata.instance.add_scenario_end_time_and_duration
+  TestRun.state = 'SCENARIO_COMPLETE'
 
 end
-
-
-# After do
-#   @browser.close
-# end

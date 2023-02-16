@@ -1,1 +1,2 @@
-base_url: 'http://centricconsulting.azurewebsites.net/'
+base_url: 'http://centricconsulting.azurewebsites.net1/'
+test_env: 'http://centricconsulting.azurewebsites.net/'
