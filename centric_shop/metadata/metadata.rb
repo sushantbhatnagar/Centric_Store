@@ -1,6 +1,7 @@
 require 'singleton'
 require 'date'
 require 'yaml'
+require 'json'
 # require_relative '../ning_test_case.rb'
 require_all 'metadata'
 require_all 'config/data'
@@ -20,15 +21,14 @@ class Metadata
   def set_base_data(world = nil)
     user = `whoami`.chomp.gsub('centricconsulti\\','')
     environment_url = FigNewton.test_env
-
     @content ||= {}
     @content.merge!(
-      framework: 'Ruby-Cucumber-Cheezy',
-      user: user,
-      hostname: `hostname`.chomp,
-      app_url: environment_url,
-      environment: environment_name(environment_url),
-      working_directory: Dir.pwd.split('/').last
+    framework: 'Ruby-Cucumber-Cheezy',
+    user: user,
+    hostname: `hostname`.chomp,
+    app_url: environment_url,
+    environment: environment_name(environment_url),
+    working_directory: Dir.pwd.split('/').last
     )
   end
 
@@ -55,7 +55,6 @@ class Metadata
     scenario_start_time = @content[:scenario_start_time]
     scenario_end_time = eastern_time
     @content.merge!(scenario_end_time: scenario_end_time, scenario_duration: duration(scenario_start_time, scenario_end_time))
-    puts 'hey'
   end
 
   def update_scenario_status(scenario)
@@ -92,6 +91,16 @@ class Metadata
     categories = %w(@computers @electronics @apparel @digital @books @jewelry @giftcards)
     result = @tags & categories
     product = result[0]&.gsub(/@/,'') || 'unknown'
+  end
+
+
+  def convert_metadata_hash_to_json
+    data = @content.to_json
+    File.open("#{Dir.pwd}/metadata/metadata.json", "a") { |file| file.write data }
+  end
+
+  def remove_contents_from_jsonfile
+    File.truncate("#{Dir.pwd}/metadata/metadata.json", 0)
   end
 
   private

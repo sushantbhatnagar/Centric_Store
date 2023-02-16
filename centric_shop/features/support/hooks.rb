@@ -23,5 +23,9 @@ After do |scenario|
   Metadata.instance.update_scenario_status(scenario)
   Metadata.instance.add_scenario_end_time_and_duration
   TestRun.state = 'SCENARIO_COMPLETE'
+  Metadata.instance.convert_metadata_hash_to_json
+end
 
+at_exit do
+  Metadata.instance.remove_contents_from_jsonfile
 end
