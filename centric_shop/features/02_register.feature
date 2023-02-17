@@ -4,7 +4,7 @@ Feature: Registration
   I want to be able to register myself on the website
   So I can have my own personal shopping space
 
-  @register @automation @functional @test_case_54321
+  @register @automation @functional @test_case_54321 @test
   Scenario: Register yourself
     Given I land on the shopping website homepage
     When I register myself on the website

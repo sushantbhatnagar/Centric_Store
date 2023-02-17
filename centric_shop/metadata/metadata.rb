@@ -12,7 +12,7 @@ include FigNewton
 
 class Metadata
   include Singleton
-  attr_accessor :content, :tags
+  attr_accessor :content, :tags, :config
 
   def clear_metadata
     @content = {}
@@ -22,13 +22,15 @@ class Metadata
     user = `whoami`.chomp.gsub('centricconsulti\\','')
     environment_url = FigNewton.test_env
     @content ||= {}
+    @config ||= []
     @content.merge!(
     framework: 'Ruby-Cucumber-Cheezy',
     user: user,
     hostname: `hostname`.chomp,
     app_url: environment_url,
     environment: environment_name(environment_url),
-    working_directory: Dir.pwd.split('/').last
+    working_directory: Dir.pwd.split('/').last,
+    config: @config
     )
   end
 
@@ -36,7 +38,7 @@ class Metadata
     @tags = scenario.source_tag_names
     json_tags = @tags.to_json
     test_case_id = get_test_case
-    @content.merge!(
+    @config.push(
       feature_name: scenario.feature,
       scenario_name: scenario.name,
       scenario_steps: get_step_text(scenario),
@@ -52,13 +54,13 @@ class Metadata
   end
 
   def add_scenario_end_time_and_duration
-    scenario_start_time = @content[:scenario_start_time]
+    scenario_start_time = @config[-1][:scenario_start_time]
     scenario_end_time = eastern_time
-    @content.merge!(scenario_end_time: scenario_end_time, scenario_duration: duration(scenario_start_time, scenario_end_time))
+    @config[-1].merge!(scenario_end_time: scenario_end_time, scenario_duration: duration(scenario_start_time, scenario_end_time))
   end
 
   def update_scenario_status(scenario)
-    @content[:scenario_status] = scenario.failed? ? :failed : :passed
+    @config[-1][:scenario_status] = scenario.failed? ? :failed : :passed
   end
 
   def environment_name(app_url)
