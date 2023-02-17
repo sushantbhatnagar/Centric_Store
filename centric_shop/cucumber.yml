@@ -1,5 +1,5 @@
 default: --no-source --color --format pretty --publish-quiet
-
 html_report: --format progress --format html --out=features.report.html
+json: --expand -f json -o reports/test_<%= Time.now.strftime("%Y%m%d-%H%M%S") %>.json
 
-centric_shop: FIG_NEWTON_FILE=default.yml DATA_MAGIC_FILE=default.yml BROWSER=chrome # --profile default #--profile html_report
+centric_shop: -p json FIG_NEWTON_FILE=default.yml DATA_MAGIC_FILE=default.yml BROWSER=chrome #--profile default #--profile html_report

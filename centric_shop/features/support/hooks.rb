@@ -25,6 +25,15 @@ After do |scenario|
   TestRun.state = 'SCENARIO_COMPLETE'
 end
 
+InstallPlugin do |config, registry|
+  config.on_event :test_step_finished do |event|
+    if event.result.failed?
+      Metadata.instance.append(exception: event.result.exception, scenario_status: 'failed')
+    end
+  end
+end
+
+
 at_exit do
   Metadata.instance.convert_metadata_hash_to_json
   Metadata.instance.remove_contents_from_jsonfile

@@ -7,7 +7,6 @@ module Cucumber
         document = ::Gherkin::Parser.new.parse(string)
         document.feature.name
       end
-
     end
   end
 end

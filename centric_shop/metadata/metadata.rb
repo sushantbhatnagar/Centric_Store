@@ -59,6 +59,11 @@ class Metadata
     @config[-1].merge!(scenario_end_time: scenario_end_time, scenario_duration: duration(scenario_start_time, scenario_end_time))
   end
 
+  def append(data)
+    @config ||= []
+    @config[-1].merge!(data) unless data.nil?
+  end
+
   def update_scenario_status(scenario)
     @config[-1][:scenario_status] = scenario.failed? ? :failed : :passed
   end
@@ -137,8 +142,4 @@ class Metadata
   def get_test_case
     @tags.find { |tag| tag.include? 'test_case'}
   end
-
-
-
-
 end
