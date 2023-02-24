@@ -1,6 +1,7 @@
 # require_relative '../../metadata/metadata.rb'
 # require_relative '../../metadata/test_run.rb'
 require_all 'metadata'
+require_all 'engines'
 
 Before do |scenario|
   Metadata.instance.clear_metadata
@@ -36,5 +37,6 @@ end
 
 at_exit do
   Metadata.instance.convert_metadata_hash_to_json
+  ElkEngine.instance.send_event(TestRun.state, 'ACTION')
   Metadata.instance.remove_contents_from_jsonfile
 end
