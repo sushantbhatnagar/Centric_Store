@@ -5,6 +5,7 @@ require_all 'engines'
 
 Before do |scenario|
   Metadata.instance.clear_metadata
+  TestRun.state = 'SUITE_STARTED'
   TestRun.state = 'SCENARIO_RUNNING'
   Metadata.instance.set_base_data(self)
   Metadata.instance.set_scenario_data(scenario)
@@ -24,6 +25,7 @@ After do |scenario|
   Metadata.instance.update_scenario_status(scenario)
   Metadata.instance.add_scenario_end_time_and_duration
   TestRun.state = 'SCENARIO_COMPLETE'
+  ElkEngine.instance.send_event(TestRun.state, 'ACTION')
 end
 
 InstallPlugin do |config, registry|
@@ -36,7 +38,8 @@ end
 
 
 at_exit do
-  Metadata.instance.convert_metadata_hash_to_json
-  ElkEngine.instance.send_event(TestRun.state, 'ACTION')
-  Metadata.instance.remove_contents_from_jsonfile
+  # Metadata.instance.convert_metadata_hash_to_json
+  TestRun.state = 'SUITE_COMPLETE'
+  # ElkEngine.instance.send_event(TestRun.state, 'ACTION')
+  # Metadata.instance.remove_contents_from_jsonfile
 end
