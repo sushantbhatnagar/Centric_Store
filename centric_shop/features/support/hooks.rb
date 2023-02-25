@@ -3,12 +3,16 @@
 require_all 'metadata'
 require_all 'engines'
 
+
 Before do |scenario|
-  Metadata.instance.clear_metadata
   TestRun.state = 'SUITE_STARTED'
-  TestRun.state = 'SCENARIO_RUNNING'
+  suite_start = Time.now
+  Metadata.instance.clear_metadata
   Metadata.instance.set_base_data(self)
+  # ElkEngine.instance.send_event(TestRun.state, 'ACTION', 'Suite Started')
   Metadata.instance.set_scenario_data(scenario)
+  # Metadata.instance.append(suite_run_start: suite_start)
+  TestRun.state = 'SCENARIO_RUNNING'
   @browser = Watir::Browser.new :chrome
 end
 
@@ -32,13 +36,14 @@ InstallPlugin do |config, registry|
   config.on_event :test_step_finished do |event|
     if event.result.failed?
       Metadata.instance.append(exception: event.result.exception, scenario_status: 'failed')
+      ElkEngine.instance.send_event(TestRun.state, 'ERROR')
     end
   end
 end
 
 
 at_exit do
-  # Metadata.instance.convert_metadata_hash_to_json
+  Metadata.instance.convert_metadata_hash_to_json
   TestRun.state = 'SUITE_COMPLETE'
   # ElkEngine.instance.send_event(TestRun.state, 'ACTION')
   # Metadata.instance.remove_contents_from_jsonfile

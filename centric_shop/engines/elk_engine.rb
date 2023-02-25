@@ -12,7 +12,6 @@ class ElkEngine
 
   def initialize
     @content = Metadata.instance.content.nil? ?  Metadata.instance.content : no_metadata_created
-
   end
 
   def send_event(type, level, message=nil)
@@ -23,7 +22,8 @@ class ElkEngine
 
   def log_elk_event(data_hash)
     #TODO: Find a way to get the id generated without duplicating it - random number method not good here
-    es_url = "#{elasticsearchbaseURL}/centric/_doc/#{random_number}"
+    es_url = "#{es_base_URL}/centric/_doc/#{random_number}"
+    retries ||=0
     begin
       hash = {event: data_hash}
       json = JSON.fast_generate(hash)
@@ -31,6 +31,7 @@ class ElkEngine
       post_ssl_message(uri , json.force_encoding('utf-8'), 'application/json')
     end
   rescue => e
+    retry if (retries +=1) < 3
     e.message << "Unable to log your event to ElasticSearch"
   end
 
@@ -38,7 +39,6 @@ class ElkEngine
     http = Net::HTTP.new(uri.host, uri.port)
     request = Net::HTTP::Post.new(uri.request_uri)
     request.basic_auth get_es_username, get_es_password
-    # response = Net::HTTP.post uri, body, "Content-Type" => "application/json"
     request.body = body
     request.content_type = type
     response = http.request(request)
@@ -55,9 +55,9 @@ class ElkEngine
 
 
   private
-  def elasticsearchbaseURL
-    host = URLHelper.elasticsearchurl
-    port = URLHelper.elasticsearchport
+  def es_base_URL
+    host = URLHelper.elastic_search_url
+    port = URLHelper.elastic_search_port
     "#{host}:#{port}"
   end
 
@@ -72,7 +72,4 @@ class ElkEngine
   def random_number
     Random.rand(10...99999)
   end
-
-
-
 end

@@ -1,10 +1,10 @@
 module URLHelper
   class << self
-    def elasticsearchurl
+    def elastic_search_url
       'http://localhost'
     end
 
-    def elasticsearchport
+    def elastic_search_port
       '9200'
     end
 
