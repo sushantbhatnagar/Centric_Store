@@ -103,7 +103,7 @@ class Metadata
 
   def get_data_for_scenario(scenario)
     data = scenario.downcase.split(" ").join("_")
-    return data_for data
+    data_for data
   end
 
   def get_product

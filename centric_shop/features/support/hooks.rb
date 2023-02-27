@@ -29,14 +29,17 @@ After do |scenario|
   Metadata.instance.update_scenario_status(scenario)
   Metadata.instance.add_scenario_end_time_and_duration
   TestRun.state = 'SCENARIO_COMPLETE'
-  ElkEngine.instance.send_event(TestRun.state, 'ACTION')
+  test_state = scenario.failed? ? 'ERROR' : 'ACTION'
+  ElkEngine.instance.send_event(TestRun.state, test_state)
 end
 
 InstallPlugin do |config, registry|
   config.on_event :test_step_finished do |event|
     if event.result.failed?
-      Metadata.instance.append(exception: event.result.exception, scenario_status: 'failed')
-      ElkEngine.instance.send_event(TestRun.state, 'ERROR')
+      # Metadata.instance.append(exception: event.result.exception, scenario_status: 'failed')
+      Metadata.instance.append(exception: event.result.exception, step_failed: event.test_step.text)
+      # TODO: Find the class name the failed test step referred to and display in metadata
+      # ElkEngine.instance.send_event(TestRun.state, 'ERROR')
     end
   end
 end
@@ -46,5 +49,5 @@ at_exit do
   Metadata.instance.convert_metadata_hash_to_json
   TestRun.state = 'SUITE_COMPLETE'
   # ElkEngine.instance.send_event(TestRun.state, 'ACTION')
-  # Metadata.instance.remove_contents_from_jsonfile
+  Metadata.instance.remove_contents_from_jsonfile
 end
