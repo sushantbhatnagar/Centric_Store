@@ -1,4 +1,4 @@
-registeration_details:
+register_yourself:
   first_name: 'Sushant'
   last_name: 'Bhatnagar'
   day: '10'
@@ -8,6 +8,6 @@ registeration_details:
   company: 'Centric Consulting'
   password: 'saibaba1234$'
   confirm_password: 'saibaba1234$'
-login_creds:
+login_to_centric_shopping_store:
   email: 'sushantbhatnagar1991@centric.com'
   password: 'saibaba1234$'
