@@ -107,7 +107,7 @@ class Metadata
   end
 
   def get_product
-    categories = %w(@computers @electronics @apparel @digital @books @jewelry @giftcards)
+    categories = %w(@computers @electronics @apparel @digital @books @jewelry @giftcards @register @login)
     result = @tags & categories
     product = result[0]&.gsub(/@/,'') || 'unknown'
   end
