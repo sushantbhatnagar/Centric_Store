@@ -35,6 +35,7 @@ class Metadata
   end
 
   def set_scenario_data(scenario, status=:pending)
+    @scenario_name = scenario.name
     @tags = scenario.source_tag_names
     json_tags = @tags.to_json
     test_case_id = get_test_case
@@ -42,6 +43,7 @@ class Metadata
     # @config.push(
       feature_name: scenario.feature,
       scenario_name: scenario.name,
+      scenario_data: get_data_for_scenario(@scenario_name),
       scenario_steps: get_step_text(scenario),
       scenario_status: status,
       scenario_test_case: test_case_id,
@@ -97,6 +99,11 @@ class Metadata
     rescue
       scenario.test_steps.map(&:text)
     end
+  end
+
+  def get_data_for_scenario(scenario)
+    data = scenario.downcase.split(" ").join("_")
+    return data_for data
   end
 
   def get_product

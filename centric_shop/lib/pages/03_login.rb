@@ -6,7 +6,7 @@ class LoginPage < ShopBasePage
   button(:enter_into_website, class: 'login-button')
 
   def login_credentials
-    populate_page_with data_for(:login_creds)
+    populate_page_with data_for(:login_to_centric_shopping_store)
     enter_into_website
   end
 end

@@ -19,7 +19,7 @@ class Register < ShopBasePage
 
   def input_details_to_register
     select_male
-    populate_page_with data_for(:registeration_details)
+    populate_page_with data_for(:register_yourself)
     register_confirm
   end
 end
