@@ -12,7 +12,7 @@ include FigNewton
 
 class Metadata
   include Singleton
-  attr_accessor :content, :tags, :config
+  attr_accessor :content, :tags
 
   def clear_metadata
     @content = {}
