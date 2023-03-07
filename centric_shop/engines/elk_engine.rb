@@ -8,7 +8,7 @@ require_all 'helpers'
 
 class ElkEngine
   include Singleton
-  attr_accessor :token
+  attr_accessor :token, :timestamp
 
   def initialize
     @content = Metadata.instance.content.nil? ?  Metadata.instance.content : no_metadata_created
@@ -16,17 +16,15 @@ class ElkEngine
 
   def send_event(type, level, message=nil)
     message = message.nil? ? Metadata.instance.content[:message] : message
-    Metadata.instance.append({type: type, level: level, message: message})
+    Metadata.instance.append({type: type, level: level, message: message, "@timestamp": Time.now.utc.iso8601})
     log_elk_event(Metadata.instance.content)
   end
 
   def log_elk_event(data_hash)
-    #TODO: Find a way to get the id generated without duplicating it - random number method not good here
-    es_url = "#{es_base_URL}/centric/_doc/#{random_number}"
-    retries ||=0
+    es_url = "#{es_base_URL}/my-data-stream/_doc"
     begin
-      hash = {event: data_hash}
-      json = JSON.fast_generate(hash)
+      retries ||=0
+      json = JSON.fast_generate(data_hash)
       uri = URI.parse(es_url)
       post_ssl_message(uri , json.force_encoding('utf-8'), 'application/json')
     end
