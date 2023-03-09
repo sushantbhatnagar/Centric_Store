@@ -19,28 +19,31 @@ class Metadata
   end
 
   def set_base_data(world = nil)
-    user = `whoami`.chomp.gsub('centricconsulti\\','')
+    user = `whoami`.chomp.gsub('centricconsulti\\', '')
     environment_url = FigNewton.test_env
     @content ||= {}
     # @config ||= []
     @content.merge!(
-    framework: 'Ruby-Cucumber-Cheezy',
-    user: user,
-    hostname: `hostname`.chomp,
-    app_url: environment_url,
-    environment: environment_name(environment_url),
-    working_directory: Dir.pwd.split('/').last,
-    # config: @config
+      framework: 'Ruby-Cucumber-Cheezy',
+      user: user,
+      hostname: `hostname`.chomp,
+      app_url: environment_url,
+      environment: environment_name(environment_url),
+      working_directory: Dir.pwd.split('/').last,
+      browser: ENV['BROWSER'],
+      operating_system: ENV['OS'],
+      regression_run_id: "run_id_#{SecureRandom.uuid}",
+      pipeline_id: "pipeline_id_#{user}"
     )
   end
 
-  def set_scenario_data(scenario, status=:pending)
+  def set_scenario_data(scenario, status = :pending)
     @scenario_name = scenario.name
     @tags = scenario.source_tag_names
     json_tags = @tags.to_json
     test_case_id = get_test_case
     @content.merge!(
-    # @config.push(
+      # @config.push(
       feature_name: scenario.feature,
       scenario_name: scenario.name,
       scenario_data: get_data_for_scenario(@scenario_name),
@@ -72,8 +75,31 @@ class Metadata
 
   def update_scenario_status(scenario)
     # @config[-1][:scenario_status] = scenario.failed? ? :failed : :passed
-    @content[:scenario_status] = scenario.failed? ? :failed : :passed
-  end
+    # @content[:scenario_status] = scenario.failed? ? :failed : :passed
+
+    # Error Category
+    if (scenario.status == :failed)
+      @content[:scenario_status] = scenario.status
+      @content[:message] = "#{scenario.exception}"
+      category = determine_category(scenario)
+      @content.merge!(error_category: category)
+    else
+      @content[:scenario_status] = scenario.status
+    end
+    end
+
+    def determine_category(scenario)
+      message = scenario.exception.message.downcase
+      category = case
+                 when message.include?('timed out')
+                   'Time-out Error'
+                 when message.include?('error')
+                   'Application Error'
+                 else
+                   'unknown'
+                 end
+      category
+    end
 
   def environment_name(app_url)
     yaml_file = YAML.load(File.read("#{Dir.pwd}/config/environments/default.yml"))
@@ -109,9 +135,8 @@ class Metadata
   def get_product
     categories = %w(@computers @electronics @apparel @digital @books @jewelry @giftcards @register @login)
     result = @tags & categories
-    product = result[0]&.gsub(/@/,'') || 'unknown'
+    product = result[0]&.gsub(/@/, '') || 'unknown'
   end
-
 
   def convert_metadata_hash_to_json
     data = @content.to_json
@@ -148,10 +173,10 @@ class Metadata
   end
 
   def test_case_id_tag(scenario)
-    scenario.tags.map(&:name).find { |tag| tag[/test_case_\d+/]}
+    scenario.tags.map(&:name).find { |tag| tag[/test_case_\d+/] }
   end
 
   def get_test_case
-    @tags.find { |tag| tag.include? 'test_case'}
+    @tags.find { |tag| tag.include? 'test_case' }
   end
 end
