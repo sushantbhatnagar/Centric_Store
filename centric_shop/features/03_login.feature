@@ -15,7 +15,7 @@ Feature: Login to Centric Store
     Given I land on the shopping website homepage
     When I login to the website
 
-  @login @functional @test_case_54324
+  @login @functional @test_case_54324 @test_
   Scenario: Admin Login to Centric Store
     Given I land on the shopping website homepage
     When I login to the website

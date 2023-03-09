@@ -12,6 +12,7 @@ class ElkEngine
 
   def initialize
     @content = Metadata.instance.content.nil? ?  Metadata.instance.content : no_metadata_created
+    @es_url = "#{es_base_URL}/my-data-stream/_doc"
   end
 
   def send_event(type, level, message=nil)
@@ -21,11 +22,11 @@ class ElkEngine
   end
 
   def log_elk_event(data_hash)
-    es_url = "#{es_base_URL}/my-data-stream/_doc"
+    # es_url = "#{es_base_URL}/my-data-stream/_doc"
     begin
       retries ||=0
       json = JSON.fast_generate(data_hash)
-      uri = URI.parse(es_url)
+      uri = URI.parse(@es_url)
       post_ssl_message(uri , json.force_encoding('utf-8'), 'application/json')
     end
   rescue => e
