@@ -68,7 +68,7 @@ class ElkEngine
     'changeme'
   end
 
-  def random_number
-    Random.rand(10...99999)
-  end
+  # def random_number
+  #   Random.rand(10...99999)
+  # end
 end

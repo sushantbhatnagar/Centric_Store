@@ -14,6 +14,11 @@ class Metadata
   include Singleton
   attr_accessor :content, :tags
 
+
+  def initialize
+    @suite_id = "suite_#{SecureRandom.uuid.split('-')[0][..3]}_run #{Time.new.strftime("on %^b %d")} #{Time.new.strftime("at %H:%M:%S")}"
+  end
+
   def clear_metadata
     @content = {}
   end
@@ -32,8 +37,8 @@ class Metadata
       working_directory: Dir.pwd.split('/').last,
       browser: ENV['BROWSER'],
       operating_system: ENV['OS'],
-      regression_run_id: "run_id_#{SecureRandom.uuid}",
-      pipeline_id: "pipeline_id_#{user}"
+      suite_id: @suite_id,
+      suite_run_by: user.gsub('.',' ')
     )
   end
 
@@ -50,7 +55,7 @@ class Metadata
       scenario_steps: get_step_text(scenario),
       scenario_status: status,
       scenario_test_case: test_case_id,
-      scenario_tags_search: json_tags,
+      # scenario_tags_search: json_tags,
       scenario_tags: @tags - [test_case_id],
       scenario_group: scenario_group,
       product: get_product,
@@ -95,6 +100,8 @@ class Metadata
                    'Time-out Error'
                  when message.include?('error')
                    'Application Error'
+                 when message.include?('This version of ChromeDriver only supports Chrome version')
+                   'Chrome-Driver Error'
                  else
                    'unknown'
                  end
