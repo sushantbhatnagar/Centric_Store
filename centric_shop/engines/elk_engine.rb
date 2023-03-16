@@ -5,6 +5,7 @@ require 'open-uri'
 require 'singleton'
 require_all 'metadata'
 require_all 'helpers'
+require_all 'config/confidential'
 
 class ElkEngine
   include Singleton
@@ -12,7 +13,7 @@ class ElkEngine
 
   def initialize
     @content = Metadata.instance.content.nil? ?  Metadata.instance.content : no_metadata_created
-    @es_url = "#{es_base_URL}/my-data-stream/_doc"
+    @es_url ||= "#{es_base_URL}/my-data-stream/_doc"
   end
 
   def send_event(type, level, message=nil)
@@ -61,11 +62,17 @@ class ElkEngine
   end
 
   def get_es_username
-    'elastic'
+    data = get_credata
+    Base64.strict_decode64(data['elastic']['username'])
   end
 
   def get_es_password
-    'changeme'
+    data = get_credata
+    Base64.strict_decode64(data['elastic']['password'])
+  end
+
+  def get_credata
+    YAML.load(File.read("#{Dir.pwd}/config/confidential/secrets.yml"))
   end
 
   # def random_number

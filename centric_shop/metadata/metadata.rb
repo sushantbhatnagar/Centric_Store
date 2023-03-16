@@ -16,7 +16,7 @@ class Metadata
 
 
   def initialize
-    @suite_id = "suite_#{SecureRandom.uuid.split('-')[0][..3]}_run #{Time.new.strftime("on %^b %d")} #{Time.new.strftime("at %H:%M:%S")}"
+    @suite_id ||= "suite_#{SecureRandom.uuid.split('-')[0][..3]}_run #{Time.new.strftime("on %^b %d")} #{Time.new.strftime("at %H:%M:%S")}"
   end
 
   def clear_metadata
