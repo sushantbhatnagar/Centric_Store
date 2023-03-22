@@ -91,7 +91,7 @@ class Metadata
     else
       @content[:scenario_status] = scenario.status
     end
-    end
+  end
 
     def determine_category(scenario)
       message = scenario.exception.message.downcase
@@ -102,11 +102,21 @@ class Metadata
                    'Application Error'
                  when message.include?('This version of ChromeDriver only supports Chrome version')
                    'Chrome-Driver Error'
+                 when message.include?('expected')
+                   'System failed to meet expectation'
                  else
                    'unknown'
                  end
       category
     end
+
+  # def get_error_categories
+  #   YAML.load(File.read("#{Dir.pwd}/config/error_categories.yml"))
+  # end
+
+  def get_data_keys
+      yaml_file = YAML.load(File.read("#{Dir.pwd}/config/data/default.yml"))
+  end
 
   def environment_name(app_url)
     yaml_file = YAML.load(File.read("#{Dir.pwd}/config/environments/default.yml"))
@@ -136,7 +146,8 @@ class Metadata
 
   def get_data_for_scenario(scenario)
     data = scenario.downcase.split(" ").join("_")
-    data_for data
+    test_keys = get_data_keys
+    test_keys.key?(data) ? data_for(data) : {"Test Data": "No Input"}
   end
 
   def get_product

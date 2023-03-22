@@ -20,7 +20,7 @@ After do |scenario|
   if scenario.failed?
     begin
       file_path = Dir.pwd + "/screen_shots/#{Time.now.to_i}.png"
-      browser.screenshot.save(file_path)
+      @browser.screenshot.save(file_path)
       embed file_path, 'image/png'
     rescue StandardError => e
       puts e.message

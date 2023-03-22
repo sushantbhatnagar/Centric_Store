@@ -13,3 +13,13 @@ Feature: Registration
     """
     Your registration completed
     """
+
+  @register @automation @functional @test_case_54331 @test_
+  Scenario: Register Header Validation
+    Given I land on the shopping website homepage
+    When I navigate to Register page
+    Then I should see on the page
+    """
+    Registeration
+    """
+

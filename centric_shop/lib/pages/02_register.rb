@@ -14,7 +14,7 @@ class Register < ShopBasePage
   text_field(:password, id: 'Password')
   text_field(:confirm_password, id: 'ConfirmPassword')
   button(:register_confirm, id: 'register-button')
-
+  div(:register_header, class: 'page-title')
   div(:registeration_success, class: 'result')
 
   def input_details_to_register

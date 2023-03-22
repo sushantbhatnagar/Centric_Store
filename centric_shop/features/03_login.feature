@@ -5,17 +5,17 @@ Feature: Login to Centric Store
   I want to be able to login to the website
   So I can explore the shopping site
 
-  @login @smoke @test_case_54322 @test_
+  @login @smoke @test_case_54322 @test
   Scenario: Login to Centric Shopping Store
     Given I land on the shopping website homepage
     When I login to the website
 
-  @login @regression @test_case_54323 @test_
+  @login @regression @test_case_54323
   Scenario: Manager Login to Centric Store
     Given I land on the shopping website homepage
     When I login to the website
 
-  @login @functional @test_case_54324 @test_
+  @login @functional @test_case_54324
   Scenario: Admin Login to Centric Store
     Given I land on the shopping website homepage
     When I login to the website
