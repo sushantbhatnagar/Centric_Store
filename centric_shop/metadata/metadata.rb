@@ -108,6 +108,14 @@ class Metadata
                    'unknown'
                  end
       category
+      # category = get_error_categories
+      # category
+      # category.each do |key, value|
+      #   @result = {}
+      #   pattern = value['error']
+      #   @result = {'category': value['error_category']} if scenario.exception.to_s.strip.include? pattern
+      # end
+      # @content.merge!(error_category: @result['category'])
     end
 
   # def get_error_categories

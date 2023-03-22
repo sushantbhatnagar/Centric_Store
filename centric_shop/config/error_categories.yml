@@ -1,0 +1,19 @@
+ElementTimeout:
+  error: timed out
+  error_category: Timeout
+ChromeDriver:
+  error: version of ChromeDriver only supports Chrome version
+  error_category: Environmental
+RestClient:
+  error: Timeout RestClient::RequestTimeout
+  error_category: RestClient Timeout
+SystemExpectationsNotMet:
+  error: expected
+  error_category: SUT not meeting Test Expectations
+AJAX:
+  error: waiting for navigation\/AJAX to complete
+  error_category: Timeout
+ElementNotFound:
+  error: not found
+  error_category: Unable to locate Element
+
