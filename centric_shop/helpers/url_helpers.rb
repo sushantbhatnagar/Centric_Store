@@ -8,5 +8,9 @@ module URLHelper
       '9200'
     end
 
+    def grid_url
+      'http://localhost:4444/wd/hub'
+    end
+
   end
 end
