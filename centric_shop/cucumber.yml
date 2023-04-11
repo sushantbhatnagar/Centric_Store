@@ -6,3 +6,4 @@ centric_shop: -p json FIG_NEWTON_FILE=default.yml DATA_MAGIC_FILE=default.yml BR
 
 parallel_json: --expand -f json -o output/test_<%= ENV['TEST_ENV_NUMBER'] %>.json
 parallel: -p default -p parallel_json -f ParallelTests::Cucumber::FailuresLogger -o output/cucumber_failures.log
+grid: -p parallel GRID=true

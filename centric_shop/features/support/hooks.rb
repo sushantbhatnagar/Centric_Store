@@ -1,8 +1,8 @@
-# require_relative '../../metadata/metadata.rb'
-# require_relative '../../metadata/test_run.rb'
 require_all 'metadata'
 require_all 'engines'
-
+require_all 'helpers'
+require 'selenium-webdriver'
+require 'rest-client'
 
 Before do |scenario|
   TestRun.state = 'SUITE_STARTED'
@@ -13,8 +13,17 @@ Before do |scenario|
   Metadata.instance.set_scenario_data(scenario)
   # Metadata.instance.append(suite_run_start: suite_start)
   TestRun.state = 'SCENARIO_RUNNING'
+  if ENV['GRID']
+    until JSON.parse(status_call.body)['value']['ready']
+      puts 'Waiting for the Selenium server to be up and running'
+      sleep 1
+    end
+    run_tests_on_grid
+  else
   @browser = Watir::Browser.new :chrome
+  end
 end
+
 
 After do |scenario|
   if scenario.failed?
@@ -44,6 +53,26 @@ InstallPlugin do |config, registry|
   end
 end
 
+def status_call
+  RestClient.get((URLHelper.grid_url + '/status'))
+end
+
+def run_tests_on_grid
+  caps = Selenium::WebDriver::Options.chrome
+  caps.timeouts = 180
+  caps = Selenium::WebDriver::Remote::Capabilities.chrome(
+    "goog:chromeOptions" => {"args" => ["--disable-infobars",
+                                        "--no-sandbox",
+                                        "--disable-dev-shm-usage",
+                                        "--enable-features=NetworkService,NetworkServiceInProcess"]})
+  client = Selenium::WebDriver::Remote::Http::Default.new
+  client.open_timeout = 120
+  client.read_timeout = 120
+  driver = Selenium::WebDriver.for :remote, :url => "http://localhost:4444/",
+                                   :options => caps, :http_client => client
+  driver.manage.timeouts.page_load= 120
+  @browser = Watir::Browser.new driver
+end
 
 at_exit do
   Metadata.instance.convert_metadata_hash_to_json

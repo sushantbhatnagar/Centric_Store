@@ -1,4 +1,4 @@
-@login @test
+@login
 Feature: Login to Centric Store
 
   As a shopaholic
@@ -10,7 +10,7 @@ Feature: Login to Centric Store
     Given I land on the shopping website homepage
     When I login to the website
 
-  @login @regression @test_case_54323
+  @login @regression @test_case_54323 @test
   Scenario: Manager Login to Centric Store
     Given I land on the shopping website homepage
     When I login to the website

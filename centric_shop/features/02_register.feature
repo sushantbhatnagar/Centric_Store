@@ -14,7 +14,7 @@ Feature: Registration
     Your registration completed
     """
 
-  @register @automation @functional @test_case_54331 @test_
+  @register @automation @functional @test_case_54331 @test
   Scenario: Register Header Validation
     Given I land on the shopping website homepage
     When I navigate to Register page
