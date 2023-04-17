@@ -20,7 +20,13 @@ Before do |scenario|
     end
     run_tests_on_grid
   else
-  @browser = Watir::Browser.new :chrome
+    options = Selenium::WebDriver::Chrome::Options.new(args: ["--disable-infobars",
+                                                              "--no-sandbox",
+                                                              "--disable-dev-shm-usage",
+                                                              "--enable-features=NetworkService,NetworkServiceInProcess"])
+
+    driver = Selenium::WebDriver.for :chrome, options: options
+    @browser = Watir::Browser.new driver
   end
 end
 
