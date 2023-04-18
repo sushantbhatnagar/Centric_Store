@@ -42,8 +42,10 @@ Before do |scenario|
                                       "--disable-dev-shm-usage",
                                       "--enable-features=NetworkService,NetworkServiceInProcess",
                                       "--window-size=1920,1200")})
-
-    driver = Selenium::WebDriver.for :chrome, options: caps
+    client = Selenium::WebDriver::Remote::Http::Default.new
+    client.open_timeout = 120
+    client.read_timeout = 120
+    driver = Selenium::WebDriver.for :chrome, options: caps, http_client: client
     @browser = Watir::Browser.new driver
   end
 end
