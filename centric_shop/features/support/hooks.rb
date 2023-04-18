@@ -21,6 +21,8 @@ Before do |scenario|
     run_tests_on_grid
   else
     options = Selenium::WebDriver::Chrome::Options.new(args: ["--disable-infobars",
+                                                              "--headless",
+                                                              "--disable-gpu",
                                                               "--no-sandbox",
                                                               "--disable-dev-shm-usage",
                                                               "--enable-features=NetworkService,NetworkServiceInProcess",
