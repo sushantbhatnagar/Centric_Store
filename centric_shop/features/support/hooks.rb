@@ -20,19 +20,30 @@ Before do |scenario|
     end
     run_tests_on_grid
   else
-    options = Selenium::WebDriver::Chrome::Options.new(args: ["--disable-infobars",
-                                                              "--headless",
-                                                              "--disable-gpu",
-                                                              "--no-sandbox",
-                                                              "--disable-dev-shm-usage",
-                                                              "--enable-features=NetworkService,NetworkServiceInProcess",
-                                                              "--window-size=1920,1200"
-                                                              ])
-    client = Selenium::WebDriver::Remote::Http::Default.new
-    client.open_timeout = 120
-    client.read_timeout = 120
-    driver = Selenium::WebDriver.for :chrome, options: options, http_client: client
-    driver.manage.timeouts.page_load= 120
+    # options = Selenium::WebDriver::Chrome::Options.new(args: ["--disable-infobars",
+    #                                                           "--headless",
+    #                                                           "--disable-gpu",
+    #                                                           "--no-sandbox",
+    #                                                           "--disable-dev-shm-usage",
+    #                                                           "--enable-features=NetworkService,NetworkServiceInProcess",
+    #                                                           "--window-size=1920,1200"
+    #                                                           ])
+    # client = Selenium::WebDriver::Remote::Http::Default.new
+    # client.open_timeout = 120
+    # client.read_timeout = 120
+    # driver = Selenium::WebDriver.for :chrome, options: options, http_client: client
+    # driver.manage.timeouts.page_load= 120
+    # @browser = Watir::Browser.new driver
+
+    caps = Selenium::WebDriver::Remote::Capabilities.chrome(
+      "goog:chromeOptions" => {args: %w("--headless",
+                                      "--disable-gpu",
+                                      "--no-sandbox",
+                                      "--disable-dev-shm-usage",
+                                      "--enable-features=NetworkService,NetworkServiceInProcess",
+                                      "--window-size=1920,1200")})
+
+    driver = Selenium::WebDriver.for :chrome, options: caps
     @browser = Watir::Browser.new driver
   end
 end
