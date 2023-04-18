@@ -20,17 +20,15 @@ Before do |scenario|
     end
     run_tests_on_grid
   else
-    caps = Selenium::WebDriver::Options.chrome
-    caps.timeouts = 180
-    caps = Selenium::WebDriver::Remote::Capabilities.chrome(
-      "goog:chromeOptions" => {"args" => ["--disable-infobars",
-                                          "--no-sandbox",
-                                          "--disable-dev-shm-usage",
-                                          "--enable-features=NetworkService,NetworkServiceInProcess"]})
+    options = Selenium::WebDriver::Chrome::Options.new(args: ["--disable-infobars",
+                                                              "--no-sandbox",
+                                                              "--disable-dev-shm-usage",
+                                                              "--enable-features=NetworkService,NetworkServiceInProcess",
+                                                              "timeouts=180"])
     client = Selenium::WebDriver::Remote::Http::Default.new
     client.open_timeout = 120
     client.read_timeout = 120
-    driver = Selenium::WebDriver.for :chrome, options: caps, :http_client => client
+    driver = Selenium::WebDriver.for :chrome, options: options, http_client: client
     driver.manage.timeouts.page_load= 120
     @browser = Watir::Browser.new driver
   end
