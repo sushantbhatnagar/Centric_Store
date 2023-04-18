@@ -26,7 +26,8 @@ Before do |scenario|
                                                               "--no-sandbox",
                                                               "--disable-dev-shm-usage",
                                                               "--enable-features=NetworkService,NetworkServiceInProcess",
-                                                              "timeouts=180"])
+                                                              "--window-size=1920,1200"
+                                                              ])
     client = Selenium::WebDriver::Remote::Http::Default.new
     client.open_timeout = 120
     client.read_timeout = 120
