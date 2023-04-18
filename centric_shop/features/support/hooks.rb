@@ -35,7 +35,7 @@ Before do |scenario|
     # driver.manage.timeouts.page_load= 120
     # @browser = Watir::Browser.new driver
 
-    caps = Selenium::WebDriver::Remote::Capabilities.chrome(
+    caps = Selenium::WebDriver::Chrome::Options.new(
       "goog:chromeOptions" => {args: %w("--headless",
                                       "--disable-gpu",
                                       "--no-sandbox",
