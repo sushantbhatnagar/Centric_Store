@@ -35,17 +35,20 @@ Before do |scenario|
     # driver.manage.timeouts.page_load= 120
     # @browser = Watir::Browser.new driver
 
-    caps = Selenium::WebDriver::Chrome::Options.new(
-      "goog:chromeOptions" => {args: %w("--headless",
-                                      "--disable-gpu",
-                                      "--no-sandbox",
-                                      "--disable-dev-shm-usage",
-                                      "--enable-features=NetworkService,NetworkServiceInProcess",
-                                      "--window-size=1920,1200")})
-    client = Selenium::WebDriver::Remote::Http::Default.new
-    client.open_timeout = 120
-    client.read_timeout = 120
-    driver = Selenium::WebDriver.for :chrome, options: caps, http_client: client
+    # caps = Selenium::WebDriver::Chrome::Options.new(
+    #   "goog:chromeOptions" => {args: %w("--headless",
+    #                                   "--disable-gpu",
+    #                                   "--no-sandbox",
+    #                                   "--disable-dev-shm-usage",
+    #                                   "--enable-features=NetworkService,NetworkServiceInProcess",
+    #                                   "--window-size=1920,1200",
+    #                                   "timeouts=180")})
+    # driver = Selenium::WebDriver.for :chrome, options: caps
+
+    options = Selenium::WebDriver::Chrome::Options.new(args: %w('--headless', 'start-maximized', '--no-sandbox', '--disable-dev-shm-usage', '--disable-gpu'))
+    options.headless!
+    driver = Selenium::WebDriver.for(:chrome, capabilities: options)
+    driver.manage.timeouts.implicit_wait = 200
     @browser = Watir::Browser.new driver
   end
 end
