@@ -45,7 +45,8 @@ Before do |scenario|
     #                                   "timeouts=180")})
     # driver = Selenium::WebDriver.for :chrome, options: caps
 
-    options = Selenium::WebDriver::Chrome::Options.new(args: %w('--headless', 'start-maximized', '--no-sandbox', '--disable-dev-shm-usage', '--disable-gpu'))
+    options = Selenium::WebDriver::Chrome::Options.new(args: %w('disable-infobars', 'window-size=1280,800',
+              '--headless', '--no-sandbox', '--disable-dev-shm-usage', '--disable-gpu', '--disable-setuid-sandbox'))
     options.headless!
     driver = Selenium::WebDriver.for(:chrome, capabilities: options)
     driver.manage.timeouts.implicit_wait = 200
