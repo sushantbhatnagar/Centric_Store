@@ -35,20 +35,26 @@ Before do |scenario|
     # driver.manage.timeouts.page_load= 120
     # @browser = Watir::Browser.new driver
 
-    # caps = Selenium::WebDriver::Chrome::Options.new(
-    #   "goog:chromeOptions" => {args: %w("--headless",
-    #                                   "--disable-gpu",
-    #                                   "--no-sandbox",
-    #                                   "--disable-dev-shm-usage",
-    #                                   "--enable-features=NetworkService,NetworkServiceInProcess",
-    #                                   "--window-size=1920,1200",
-    #                                   "timeouts=180")})
-    # driver = Selenium::WebDriver.for :chrome, options: caps
+    caps = Selenium::WebDriver::Chrome::Options.new(
+      "goog:chromeOptions" => {args: %w("--headless",
+                                      "--disable-gpu",
+                                      "--no-sandbox",
+                                      "--disable-dev-shm-usage",
+                                      "--enable-features=NetworkService,NetworkServiceInProcess",
+                                      "--window-size=1920,1200",
+                                      "timeouts=180")})
+    caps.add_argument("start-maximized")
+    caps.add_argument("disable-infobars")
+    caps.add_argument("--no-sandbox")
+    caps.add_argument("--disable-dev-shm-usage")
+    caps.add_argument("--disable-gpu")
+    caps.add_argument("--disable-setuid-sandbox")
+    driver = Selenium::WebDriver.for :chrome, options: caps
 
-    options = Selenium::WebDriver::Chrome::Options.new(args: %w('disable-infobars', 'window-size=1280,800',
-              '--headless', '--no-sandbox', '--disable-dev-shm-usage', '--disable-gpu', '--disable-setuid-sandbox'))
-    options.headless!
-    driver = Selenium::WebDriver.for(:chrome, capabilities: options)
+    # options = Selenium::WebDriver::Chrome::Options.new(args: %w('disable-infobars', 'window-size=1280,800',
+    #           '--headless', '--no-sandbox', '--disable-dev-shm-usage', '--disable-gpu', '--disable-setuid-sandbox'))
+    # options.headless!
+    # driver = Selenium::WebDriver.for(:chrome, options: options)
     driver.manage.timeouts.implicit_wait = 200
     @browser = Watir::Browser.new driver
   end
