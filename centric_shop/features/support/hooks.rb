@@ -42,13 +42,15 @@ Before do |scenario|
                                       "--disable-dev-shm-usage",
                                       "--enable-features=NetworkService,NetworkServiceInProcess",
                                       "--window-size=1920,1200",
-                                      "timeouts=180")})
-    caps.add_argument("start-maximized")
-    caps.add_argument("disable-infobars")
+                                      "timeouts=180"), binary: "/usr/bin/google-chrome-stable"})
     caps.add_argument("--no-sandbox")
     caps.add_argument("--disable-dev-shm-usage")
+    caps.add_argument('--headless=new')
+    caps.add_argument("start-maximized")
+    caps.add_argument("disable-infobars")
     caps.add_argument("--disable-gpu")
     caps.add_argument("--disable-setuid-sandbox")
+    # caps.binary("/usr/bin/google-chrome-stable")
     driver = Selenium::WebDriver.for :chrome, options: caps
 
     # options = Selenium::WebDriver::Chrome::Options.new(args: %w('disable-infobars', 'window-size=1280,800',
