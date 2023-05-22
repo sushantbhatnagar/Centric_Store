@@ -50,7 +50,6 @@ Before do |scenario|
     caps.add_argument("disable-infobars")
     caps.add_argument("--disable-gpu")
     caps.add_argument("--disable-setuid-sandbox")
-    # caps.binary("/usr/bin/google-chrome-stable")
     driver = Selenium::WebDriver.for :chrome, options: caps
 
     # options = Selenium::WebDriver::Chrome::Options.new(args: %w('disable-infobars', 'window-size=1280,800',
