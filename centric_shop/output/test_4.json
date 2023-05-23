@@ -1,0 +1,240 @@
+[
+  {
+    "id": "login-to-centric-store",
+    "uri": "features/03_login.feature",
+    "keyword": "Feature",
+    "name": "Login to Centric Store",
+    "description": "  As a shopaholic\n  I want to be able to login to the website\n  So I can explore the shopping site",
+    "line": 2,
+    "tags": [
+      {
+        "name": "@login",
+        "line": 1
+      }
+    ],
+    "elements": [
+      {
+        "id": "login-to-centric-store;architect-login-to-centric-store",
+        "keyword": "Scenario",
+        "name": "Architect Login to Centric Store",
+        "description": "",
+        "line": 29,
+        "type": "scenario",
+        "steps": [
+          {
+            "keyword": "Given ",
+            "name": "I land on the shopping website homepage",
+            "line": 30,
+            "match": {
+              "location": "features/step_definitions/02_register.rb:1"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 6337219300
+            }
+          },
+          {
+            "keyword": "When ",
+            "name": "I login to the website",
+            "line": 31,
+            "match": {
+              "location": "features/step_definitions/03_login.rb:1"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 34670696200
+            }
+          }
+        ],
+        "tags": [
+          {
+            "name": "@login",
+            "line": 1
+          },
+          {
+            "name": "@login",
+            "line": 28
+          },
+          {
+            "name": "@smoke",
+            "line": 28
+          },
+          {
+            "name": "@test_case_54326",
+            "line": 28
+          }
+        ],
+        "before": [
+          {
+            "match": {
+              "location": "features/support/hooks.rb:7"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 8208604400
+            }
+          }
+        ],
+        "after": [
+          {
+            "match": {
+              "location": "features/support/hooks.rb:28"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 4689828600
+            }
+          }
+        ]
+      },
+      {
+        "id": "login-to-centric-store;hr-login-to-centric-store",
+        "keyword": "Scenario",
+        "name": "HR Login to Centric Store",
+        "description": "",
+        "line": 49,
+        "type": "scenario",
+        "steps": [
+          {
+            "keyword": "Given ",
+            "name": "I land on the shopping website homepage",
+            "line": 50,
+            "match": {
+              "location": "features/step_definitions/02_register.rb:1"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 5425612900
+            }
+          },
+          {
+            "keyword": "When ",
+            "name": "I login to the website",
+            "line": 51,
+            "match": {
+              "location": "features/step_definitions/03_login.rb:1"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 4560287200
+            }
+          }
+        ],
+        "tags": [
+          {
+            "name": "@login",
+            "line": 1
+          },
+          {
+            "name": "@smoke",
+            "line": 48
+          },
+          {
+            "name": "@test_case_54330",
+            "line": 48
+          }
+        ],
+        "before": [
+          {
+            "match": {
+              "location": "features/support/hooks.rb:7"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 7891399500
+            }
+          }
+        ],
+        "after": [
+          {
+            "match": {
+              "location": "features/support/hooks.rb:28"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 73661000
+            }
+          }
+        ]
+      },
+      {
+        "id": "login-to-centric-store;login-to-centric-shopping-store",
+        "keyword": "Scenario",
+        "name": "Login to Centric Shopping Store",
+        "description": "",
+        "line": 9,
+        "type": "scenario",
+        "steps": [
+          {
+            "keyword": "Given ",
+            "name": "I land on the shopping website homepage",
+            "line": 10,
+            "match": {
+              "location": "features/step_definitions/02_register.rb:1"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 1124648300
+            }
+          },
+          {
+            "keyword": "When ",
+            "name": "I login to the website",
+            "line": 11,
+            "match": {
+              "location": "features/step_definitions/03_login.rb:1"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 2677013900
+            }
+          }
+        ],
+        "tags": [
+          {
+            "name": "@login",
+            "line": 1
+          },
+          {
+            "name": "@login",
+            "line": 8
+          },
+          {
+            "name": "@smoke",
+            "line": 8
+          },
+          {
+            "name": "@test_case_54322",
+            "line": 8
+          },
+          {
+            "name": "@test",
+            "line": 8
+          }
+        ],
+        "before": [
+          {
+            "match": {
+              "location": "features/support/hooks.rb:7"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 5096641400
+            }
+          }
+        ],
+        "after": [
+          {
+            "match": {
+              "location": "features/support/hooks.rb:28"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 43556100
+            }
+          }
+        ]
+      }
+    ]
+  }
+]
