@@ -1,0 +1,24 @@
+node {
+
+    // Declare Global variable
+    def commit_id
+
+    // Prepare the test harness
+    stage('Preparation'){
+        checkout scm
+        sh "git rev-parse --short HEAD > .git/commit-id"
+        commit_id = readFile('.git/commit-id').trim()
+    }
+
+    // Dependencies
+    stage('Run Dependencies'){
+        sh 'cd centric_shop' // change directory to directory under tests
+        sh 'bundle install' // install dependencies
+        sh 'su jenkins' // Change user from root to jenkins
+    }
+
+    //Run Tests in Selenium Grid
+    stage('Run Tests on Grid'){
+        sh 'cucumber -p grid -t @login'
+    }
+}
