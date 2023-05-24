@@ -23,6 +23,8 @@ node {
 
     //Run Tests in Selenium Grid
     stage('Run Tests on Grid'){
-        sh 'cucumber -p grid -t @login'
+        dir('centric_shop') {
+            sh 'cucumber -p grid -t @login'
+        }
     }
 }
