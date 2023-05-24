@@ -105,7 +105,7 @@ def run_tests_on_grid
   client = Selenium::WebDriver::Remote::Http::Default.new
   client.open_timeout = 120
   client.read_timeout = 120
-  driver = Selenium::WebDriver.for :remote, :url => "http://localhost:4444/",
+  driver = Selenium::WebDriver.for :remote, :url => "http://192.168.1.72:4444/",
                                    :options => caps, :http_client => client
   driver.manage.timeouts.page_load= 120
   @browser = Watir::Browser.new driver

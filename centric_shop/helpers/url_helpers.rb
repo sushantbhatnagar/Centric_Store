@@ -10,7 +10,7 @@ module URLHelper
     end
 
     def grid_url
-      'http://localhost:4444/wd/hub'
+      'http://192.168.1.72/wd/hub'
     end
 
   end
