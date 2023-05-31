@@ -16,7 +16,7 @@ pipeline {
         stage('Run Tests') {
               steps {
                  dir('centric_shop') {
-                    sh 'cucumber -t @test_case_54322'
+                    sh 'cucumber -p grid -t @login'
                 }
             }
         }
