@@ -4,8 +4,8 @@ pipeline {
         stage('Test') {
              steps {
                 dir('centric_shop') {
-                            sh 'bundle install'
-                            sh 'su slave'
+                    sh 'bundle install'
+                    sh 'su slave'
                 }
             }
         }
