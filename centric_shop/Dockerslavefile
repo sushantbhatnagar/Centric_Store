@@ -5,11 +5,18 @@ pipeline {
          }
     }
     stages {
-        stage('Test') {
+        stage('Run Dependencies') {
              steps {
                 dir('centric_shop') {
                    sh 'bundle install'
                    sh 'su slave'
+                }
+            }
+        }
+        stage('Run Tests') {
+              steps {
+                 dir('centric_shop') {
+                    sh 'cucumber -t @test_case_54322'
                 }
             }
         }
