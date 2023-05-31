@@ -2,8 +2,11 @@ pipeline {
     agent { dockerfile true }
     stages {
         stage('Test') {
-            steps {
-                sh 'bundle'
+             steps {
+                dir('centric_shop') {
+                            sh 'bundle install'
+                            sh 'su slave'
+                }
             }
         }
     }
