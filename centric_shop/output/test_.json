@@ -1,0 +1,266 @@
+[
+  {
+    "id": "landing-on-the-homepage",
+    "uri": "features/01_homepage.feature",
+    "keyword": "Feature",
+    "name": "Landing on the Homepage",
+    "description": "  As a shopaholic\n  I want to navigate to Centric Shopping Store\n  So I can start to shop",
+    "line": 1,
+    "elements": [
+      {
+        "id": "landing-on-the-homepage;verify-i-should-be-able-to-land-on-the-homepage",
+        "keyword": "Scenario",
+        "name": "Verify I should be able to land on the homepage",
+        "description": "",
+        "line": 8,
+        "type": "scenario",
+        "steps": [
+          {
+            "keyword": "Given ",
+            "name": "I enter Centric Shopping Store URL (ph)",
+            "line": 9,
+            "match": {
+              "location": "features/step_definitions/spec_definitions.rb:1"
+            },
+            "result": {
+              "status": "pending",
+              "error_message": "TODO (Cucumber::Pending)\n./features/step_definitions/spec_definitions.rb:2:in `/^.*\\(ph\\)$/'\nfeatures/01_homepage.feature:9:in `I enter Centric Shopping Store URL (ph)'",
+              "duration": 526100
+            }
+          },
+          {
+            "keyword": "Then ",
+            "name": "I should see the home page (ph)",
+            "line": 10,
+            "match": {
+              "location": "features/step_definitions/spec_definitions.rb:1"
+            },
+            "result": {
+              "status": "skipped"
+            }
+          }
+        ],
+        "tags": [
+          {
+            "name": "@home_page",
+            "line": 7
+          },
+          {
+            "name": "@rspec_test",
+            "line": 7
+          },
+          {
+            "name": "@unit_test",
+            "line": 7
+          },
+          {
+            "name": "@test",
+            "line": 7
+          },
+          {
+            "name": "@automation",
+            "line": 7
+          },
+          {
+            "name": "@functional",
+            "line": 7
+          },
+          {
+            "name": "@test_case_54320",
+            "line": 7
+          }
+        ],
+        "before": [
+          {
+            "match": {
+              "location": "features/support/hooks.rb:7"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 9815612100
+            }
+          }
+        ],
+        "after": [
+          {
+            "match": {
+              "location": "features/support/hooks.rb:28"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 224070600
+            }
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "login-to-centric-store",
+    "uri": "features/03_login.feature",
+    "keyword": "Feature",
+    "name": "Login to Centric Store",
+    "description": "  As a shopaholic\n  I want to be able to login to the website\n  So I can explore the shopping site",
+    "line": 2,
+    "tags": [
+      {
+        "name": "@login",
+        "line": 1
+      }
+    ],
+    "elements": [
+      {
+        "id": "login-to-centric-store;manager-login-to-centric-store",
+        "keyword": "Scenario",
+        "name": "Manager Login to Centric Store",
+        "description": "",
+        "line": 14,
+        "type": "scenario",
+        "steps": [
+          {
+            "keyword": "Given ",
+            "name": "I land on the shopping website homepage",
+            "line": 15,
+            "match": {
+              "location": "features/step_definitions/02_register.rb:1"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 2208696200
+            }
+          },
+          {
+            "keyword": "When ",
+            "name": "I login to the website",
+            "line": 16,
+            "match": {
+              "location": "features/step_definitions/03_login.rb:1"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 7434720600
+            }
+          }
+        ],
+        "tags": [
+          {
+            "name": "@login",
+            "line": 1
+          },
+          {
+            "name": "@login",
+            "line": 13
+          },
+          {
+            "name": "@regression",
+            "line": 13
+          },
+          {
+            "name": "@test_case_54323",
+            "line": 13
+          },
+          {
+            "name": "@test",
+            "line": 13
+          }
+        ],
+        "before": [
+          {
+            "match": {
+              "location": "features/support/hooks.rb:7"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 10700785200
+            }
+          }
+        ],
+        "after": [
+          {
+            "match": {
+              "location": "features/support/hooks.rb:28"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 2385357900
+            }
+          }
+        ]
+      },
+      {
+        "id": "login-to-centric-store;vp-login-to-centric-store",
+        "keyword": "Scenario",
+        "name": "VP Login to Centric Store",
+        "description": "",
+        "line": 34,
+        "type": "scenario",
+        "steps": [
+          {
+            "keyword": "Given ",
+            "name": "I land on the shopping website homepage",
+            "line": 35,
+            "match": {
+              "location": "features/step_definitions/02_register.rb:1"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 6451167800
+            }
+          },
+          {
+            "keyword": "When ",
+            "name": "I login to the website",
+            "line": 36,
+            "match": {
+              "location": "features/step_definitions/03_login.rb:1"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 3615641400
+            }
+          }
+        ],
+        "tags": [
+          {
+            "name": "@login",
+            "line": 1
+          },
+          {
+            "name": "@login",
+            "line": 33
+          },
+          {
+            "name": "@functional",
+            "line": 33
+          },
+          {
+            "name": "@test_case_54327",
+            "line": 33
+          }
+        ],
+        "before": [
+          {
+            "match": {
+              "location": "features/support/hooks.rb:7"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 9588811000
+            }
+          }
+        ],
+        "after": [
+          {
+            "match": {
+              "location": "features/support/hooks.rb:28"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 1488023000
+            }
+          }
+        ]
+      }
+    ]
+  }
+]

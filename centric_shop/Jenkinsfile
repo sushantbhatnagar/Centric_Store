@@ -1,0 +1,27 @@
+node {
+
+    // Declare Global variable
+    def commit_id
+
+    // Prepare the test harness
+    stage('Preparation'){
+        checkout scmGit(branches: [[name: '*/zalenium']], extensions: [], userRemoteConfigs: [[credentialsId: 'githubSecrets', url: 'https://github.com/sushantbhatnagar/Centric_Store.git']])
+        sh "git rev-parse --short HEAD > .git/commit-id"
+        commit_id = readFile('.git/commit-id').trim()
+    }
+
+    // Dependencies
+    stage('Run Dependencies'){
+        dir('centric_shop') {
+            sh 'bundle install'
+            sh 'su jenkins'
+        }
+    }
+
+    //Run Tests in Selenium Grid
+    stage('Run Tests on Grid'){
+        dir('centric_shop') {
+            sh 'cucumber -p grid -t @login'
+        }
+    }
+}

@@ -1,0 +1,282 @@
+[
+  {
+    "id": "registration",
+    "uri": "features/02_register.feature",
+    "keyword": "Feature",
+    "name": "Registration",
+    "description": "  As a shopaholic\n  I want to be able to register myself on the website\n  So I can have my own personal shopping space",
+    "line": 2,
+    "tags": [
+      {
+        "name": "@register",
+        "line": 1
+      }
+    ],
+    "elements": [
+      {
+        "id": "registration;register-yourself",
+        "keyword": "Scenario",
+        "name": "Register yourself",
+        "description": "",
+        "line": 9,
+        "type": "scenario",
+        "steps": [
+          {
+            "keyword": "Given ",
+            "name": "I land on the shopping website homepage",
+            "line": 10,
+            "match": {
+              "location": "features/step_definitions/02_register.rb:1"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 4680463600
+            }
+          },
+          {
+            "keyword": "When ",
+            "name": "I register myself on the website",
+            "line": 11,
+            "match": {
+              "location": "features/step_definitions/02_register.rb:5"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 63779036500
+            }
+          },
+          {
+            "keyword": "Then ",
+            "name": "I should be able to below registration successful text",
+            "line": 12,
+            "doc_string": {
+              "value": "Your registration completed",
+              "content_type": "",
+              "line": 13
+            },
+            "match": {
+              "location": "features/step_definitions/02_register.rb:12"
+            },
+            "result": {
+              "status": "failed",
+              "error_message": "timed out after 30 seconds, waiting for #<Watir::Div: located: false; {:class=>\"result\", :tag_name=>\"div\"}> to be located (Watir::Exception::UnknownObjectException)\n./features/step_definitions/02_register.rb:15:in `/^I should be able to below registration successful text$/'\nfeatures/02_register.feature:12:in `I should be able to below registration successful text'",
+              "duration": 65236775800
+            }
+          }
+        ],
+        "tags": [
+          {
+            "name": "@register",
+            "line": 1
+          },
+          {
+            "name": "@register",
+            "line": 8
+          },
+          {
+            "name": "@automation",
+            "line": 8
+          },
+          {
+            "name": "@functional",
+            "line": 8
+          },
+          {
+            "name": "@test_case_54321",
+            "line": 8
+          },
+          {
+            "name": "@test",
+            "line": 8
+          }
+        ],
+        "before": [
+          {
+            "match": {
+              "location": "features/support/hooks.rb:7"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 9864559700
+            }
+          }
+        ],
+        "after": [
+          {
+            "match": {
+              "location": "features/support/hooks.rb:28"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 202629100
+            }
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "login-to-centric-store",
+    "uri": "features/03_login.feature",
+    "keyword": "Feature",
+    "name": "Login to Centric Store",
+    "description": "  As a shopaholic\n  I want to be able to login to the website\n  So I can explore the shopping site",
+    "line": 2,
+    "tags": [
+      {
+        "name": "@login",
+        "line": 1
+      }
+    ],
+    "elements": [
+      {
+        "id": "login-to-centric-store;admin-login-to-centric-store",
+        "keyword": "Scenario",
+        "name": "Admin Login to Centric Store",
+        "description": "",
+        "line": 19,
+        "type": "scenario",
+        "steps": [
+          {
+            "keyword": "Given ",
+            "name": "I land on the shopping website homepage",
+            "line": 20,
+            "match": {
+              "location": "features/step_definitions/02_register.rb:1"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 1026619900
+            }
+          },
+          {
+            "keyword": "When ",
+            "name": "I login to the website",
+            "line": 21,
+            "match": {
+              "location": "features/step_definitions/03_login.rb:1"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 1560860900
+            }
+          }
+        ],
+        "tags": [
+          {
+            "name": "@login",
+            "line": 1
+          },
+          {
+            "name": "@login",
+            "line": 18
+          },
+          {
+            "name": "@functional",
+            "line": 18
+          },
+          {
+            "name": "@test_case_54324",
+            "line": 18
+          }
+        ],
+        "before": [
+          {
+            "match": {
+              "location": "features/support/hooks.rb:7"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 2226246300
+            }
+          }
+        ],
+        "after": [
+          {
+            "match": {
+              "location": "features/support/hooks.rb:28"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 43167100
+            }
+          }
+        ]
+      },
+      {
+        "id": "login-to-centric-store;president-login-to-centric-store",
+        "keyword": "Scenario",
+        "name": "President Login to Centric Store",
+        "description": "",
+        "line": 39,
+        "type": "scenario",
+        "steps": [
+          {
+            "keyword": "Given ",
+            "name": "I land on the shopping website homepage",
+            "line": 40,
+            "match": {
+              "location": "features/step_definitions/02_register.rb:1"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 1128867500
+            }
+          },
+          {
+            "keyword": "When ",
+            "name": "I login to the website",
+            "line": 41,
+            "match": {
+              "location": "features/step_definitions/03_login.rb:1"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 1395822300
+            }
+          }
+        ],
+        "tags": [
+          {
+            "name": "@login",
+            "line": 1
+          },
+          {
+            "name": "@login",
+            "line": 38
+          },
+          {
+            "name": "@smoke",
+            "line": 38
+          },
+          {
+            "name": "@test_case_54328",
+            "line": 38
+          }
+        ],
+        "before": [
+          {
+            "match": {
+              "location": "features/support/hooks.rb:7"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 1977757100
+            }
+          }
+        ],
+        "after": [
+          {
+            "match": {
+              "location": "features/support/hooks.rb:28"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 29902100
+            }
+          }
+        ]
+      }
+    ]
+  }
+]

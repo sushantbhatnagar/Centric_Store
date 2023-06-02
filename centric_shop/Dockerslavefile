@@ -1,0 +1,24 @@
+pipeline {
+    agent {
+        dockerfile {
+            dir 'centric_shop'
+         }
+    }
+    stages {
+        stage('Run Dependencies') {
+             steps {
+                dir('centric_shop') {
+                   sh 'bundle install'
+                   sh 'su slave'
+                }
+            }
+        }
+        stage('Run Tests') {
+              steps {
+                 dir('centric_shop') {
+                    sh 'cucumber -p grid -t @login'
+                }
+            }
+        }
+    }
+}
