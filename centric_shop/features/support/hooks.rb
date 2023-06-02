@@ -75,7 +75,7 @@ After do |scenario|
   Metadata.instance.update_scenario_status(scenario)
   Metadata.instance.add_scenario_end_time_and_duration
   TestRun.state = 'SCENARIO_COMPLETE'
-  test_state = scenario.failed? ? 'ERROR' : 'ACTION'
+  test_state = scenario.failed? ? 'ERROR' : 'SUCCESS'
   ElkEngine.instance.send_event(TestRun.state, test_state)
 end
 
