@@ -7,6 +7,8 @@ pipeline {
         dir('centric_shop') {
         script {
           // Run the Ruby script using cuke-slicer
+          sh 'bundle install'
+          sh 'su jenkins'
           sh 'ruby divide_test_cases.rb'
         }
        }
