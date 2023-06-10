@@ -9,7 +9,6 @@ pipeline {
           // Run the Ruby script using cuke-slicer
           sh 'bundle install'
           sh 'su jenkins'
-          sh 'println "${pwd}"'
           sh 'ruby divide_test_cases.rb'
         }
        }
