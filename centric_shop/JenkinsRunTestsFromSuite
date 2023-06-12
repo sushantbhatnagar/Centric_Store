@@ -10,12 +10,14 @@ pipeline {
           sh 'bundle install'
           sh 'su jenkins'
           sh 'pwd'
-          def rubyPath = sh(returnStdout: true, script: 'which ruby').trim()
-          sh "${rubyPath} divide_test_cases.rb"
+          sh 'ls'
+          sh 'ruby divide_test_case.rb'
         }
        }
      }
    }
+
+
 
     // Add more stages for additional pipeline steps
     // ...
