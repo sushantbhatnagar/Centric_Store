@@ -35,12 +35,8 @@ pipeline {
           for (int i = 0; i < suites.size(); i++) {
             def suite = suites[i]
             def fileContent = readFile "${suite}"
-            //def featureFile = fileContent[0]
-            //echo "File Content ---- ${featureFile}"
-
             def testSuite = fileContent
-            // echo "Printing test suite ${testSuite}"
-            // Run each suite of test cases on the Jenkins slave
+
             println "Running tests from ${suite} with feature file ${testSuite}"
             sh "cucumber -p grid ${testSuite}"
            }
@@ -48,9 +44,5 @@ pipeline {
        }
      }
    }
-
-
-    // Add more stages for additional pipeline steps
-    // ...
   }
 }
