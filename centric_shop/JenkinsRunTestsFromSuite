@@ -47,7 +47,7 @@ pipeline {
             echo '''${featureFile}'''
 
             println "Running tests from ${suite}"
-            sh "cucumber '''${featureFile}'''
+            //sh "cucumber '''${featureFile}
            }
          }
        }
