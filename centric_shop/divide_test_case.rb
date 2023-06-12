@@ -22,5 +22,5 @@ end
 suites.each_with_index do |suite, index|
   puts "Test Suite #{index + 1}:"
   suite.each { |feature_file| puts "- #{feature_file}" }
-  File.write("suite_#{index + 1}.feature", suite)
+  File.write("suite_#{index + 1}.feature", suite.first)
 end

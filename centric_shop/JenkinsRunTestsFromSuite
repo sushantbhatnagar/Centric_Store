@@ -38,7 +38,7 @@ pipeline {
             def featureFile = fileContent[0]
             echo "File Content ---- ${featureFile}"
 
-            def testSuite = fileContent[0]
+            def testSuite = fileContent
             echo "Printing test suite -------- ${testSuite}"
             // Run each suite of test cases on the Jenkins slave
             println "Running tests from ${suite}"
