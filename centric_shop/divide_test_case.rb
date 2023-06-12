@@ -1,5 +1,4 @@
 require 'cuke_slicer'
-require 'pry'
 
 # Number of test suites
 num_suites = 3
