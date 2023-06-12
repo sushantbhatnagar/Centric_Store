@@ -39,7 +39,7 @@ pipeline {
             echo testSuite
             // Run each suite of test cases on the Jenkins slave
             println "Running tests from ${suite}"
-            sh "cucumber ${testSuite}"
+            sh cucumber testSuite
            }
          }
        }
