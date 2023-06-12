@@ -37,8 +37,8 @@ pipeline {
             def fileContent = readFile "${suite}"
             echo fileContent
             // Run each suite of test cases on the Jenkins slave
-            // println "Running tests from ${suite}"
-            // sh "cucumber ${suite}"
+            println "Running tests from ${suite}"
+            sh "cucumber ${fileContent[0]}"
            }
          }
        }
