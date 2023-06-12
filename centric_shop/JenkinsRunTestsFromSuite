@@ -45,7 +45,7 @@ pipeline {
             // Run each suite of test cases on the Jenkins slave
 
             println "Running tests from ${suite}"
-            sh "cucumber ${featureFile}"
+            sh "cucumber '''${featureFile}'''
            }
          }
        }
