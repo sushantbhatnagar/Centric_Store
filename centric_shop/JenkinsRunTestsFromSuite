@@ -34,7 +34,8 @@ pipeline {
 
           for (int i = 0; i < suites.size(); i++) {
             def suite = suites[i]
-            new File(suite).eachLine { line -> println line }
+            def fileContent = readFile "${suite}"
+            echo fileContent
             // Run each suite of test cases on the Jenkins slave
             // println "Running tests from ${suite}"
             // sh "cucumber ${suite}"
