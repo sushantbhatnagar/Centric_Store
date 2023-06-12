@@ -35,7 +35,7 @@ pipeline {
           for (int i = 0; i < suites.size(); i++) {
             def suite = suites[i]
 
-            def fileContent = readFile 'filename.txt'.trim().split('\n')
+            def fileContent = readFile "${suite}".trim().split('\n')
             def command = fileContent[0].trim()
             println "Command is ---- ${command}"
 
