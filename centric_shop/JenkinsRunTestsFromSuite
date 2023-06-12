@@ -35,7 +35,7 @@ pipeline {
           for (int i = 0; i < suites.size(); i++) {
             def suite = suites[i]
             // Run each suite of test cases on the Jenkins slave
-            println "${suite}"
+            println "Running suite --- ${suite}"
             sh "cucumber ${suite}"
            }
          }
