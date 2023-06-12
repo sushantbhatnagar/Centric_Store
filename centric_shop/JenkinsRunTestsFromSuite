@@ -5,12 +5,13 @@ pipeline {
     stage('Divide Test Cases') {
       steps {
         dir('centric_shop') {
+        script {
           // Run the Ruby script using cuke-slicer
           sh 'bundle install'
           sh 'su jenkins'
-          sh 'cd centric_shop'
-          sh 'ruby divide_test_cases.rb'
-
+          def rubyPath = sh(returnStdout: true, script: 'which ruby').trim()
+          sh "${rubyPath} divide_test_cases.rb"
+        }
        }
      }
    }
