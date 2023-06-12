@@ -35,6 +35,7 @@ pipeline {
           for (int i = 0; i < suites.size(); i++) {
             def suite = suites[i]
             def fileContent = readFile "${suite}"
+            echo "File Content ---- ${fileContent}"
             def testSuite = fileContent[0]
             echo "Printing test suite -------- ${testSuite}"
             // Run each suite of test cases on the Jenkins slave
