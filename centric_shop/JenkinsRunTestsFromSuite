@@ -34,10 +34,11 @@ pipeline {
 
           for (int i = 0; i < suites.size(); i++) {
             def suite = suites[i]
-            def fileContent = readFile "${suite}".trim().split('\n')
-            def featureContent = "${fileContent[0]}"
-            println "fileContent is ${featureContent}"
-            // Run each suite of test cases on the Jenkins slave
+
+            def fileContent = readFile 'filename.txt'.trim().split('\n')
+            def command = fileContent[0].trim()
+            println "Command is ---- ${command}"
+
 
             println "Running tests from ${suite}"
             sh "cucumber ${testSuite}"
