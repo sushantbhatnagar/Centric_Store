@@ -66,12 +66,14 @@ pipeline {
 
                       // Stash the env.Group1 value
                       stash includes: 'env.GROUP1', name: 'Group1'
+                      stash includes: 'group1', name: 'testGroup1'
 
                       env.GROUP2 = group2.join(',')
                       echo "${env.GROUP2}"
 
                       // Stash the env.Group2 value
                       stash includes: 'env.GROUP2', name: 'Group2'
+                      stash includes: 'group2', name: 'testGroup2'
 
                     }
                 }
@@ -93,6 +95,9 @@ pipeline {
                             sh 'Xvfb :1 -screen 0 1600x1200x16 &'
                             sh 'export DISPLAY=:1.0'
                             unstash 'Group1'
+                            unstash 'testGroup1'
+                            echo "Unstashed Value of Group 1 is : ${env.GROUP1}"
+                            echo "Unstashed Value of Group 11 is : ${testGroup1}"
                             sh 'su slave'
 
                             // Retrieve the suite group 1 from environment variable
@@ -129,6 +134,9 @@ pipeline {
                             sh 'Xvfb :1 -screen 0 1600x1200x16 &'
                             sh 'export DISPLAY=:1.0'
                             unstash 'Group2'
+                            unstash 'testGroup2'
+                            echo "Unstashed Value of Group 2 is : ${env.GROUP2}"
+                            echo "Unstashed Value of Group 22 is : ${testGroup2}"
                             sh 'su slave'
 
                             // Retrieve the suite group 2 from environment variable
