@@ -39,11 +39,11 @@ pipeline {
             //def testSuite = fileContent
 
             println "Running tests with feature file ${testSuite} from ${suite}"
-            sh "cucumber ${testSuite} --tags '@functional'"
+            sh "cucumber ${testSuite} --tags '@functional' --format progress"
            }
          }
        }
      }
-   }
+    }
   }
 }
