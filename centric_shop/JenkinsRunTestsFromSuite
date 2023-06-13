@@ -77,6 +77,8 @@ pipeline {
                 stage('Suite 1'){
                     // agent { label 'slave1' }
                     steps {
+                        dir('centric_shop'){
+
                         script {
                             // Retrieve the suite group 1 from environment variable
                             def suitesGroup1 = env.GROUP1.split(',')
@@ -95,10 +97,12 @@ pipeline {
                             }
                         }
                     }
-                }
+                }}
                 stage('Suite 2'){
                     // agent { label 'slave2' }
                     steps {
+
+                        dir('centric_shop'){
                         script {
                             // Retrieve the suite group 2 from environment variable
                             def suitesGroup2 = env.GROUP2.split(',')
@@ -117,7 +121,7 @@ pipeline {
                                 }
                             }
                         }
-                    }
+                    }}
                 }
             }
         }}
