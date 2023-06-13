@@ -82,7 +82,11 @@ pipeline {
                             def suitesGroup1 = env.GROUP1.split(',')
                             // Run the test cases from suite group 1 on the Jenkins slave
                             for (def suite : suitesGroup1) {
-                                def testExitCode = sh script: "bundle exec cucumber ${suite} --tags '@functional'", returnStatus: true
+                                echo "Suite name is : ${suite}"
+                                echo "SuiteGroup is : ${suiteGroup1}"
+                                def testSuite = readFile "${suite}"
+                                echo "TestSuite content is: ${testSuite}"
+                                def testExitCode = sh script: "bundle exec cucumber ${testSuite} --tags '@functional'", returnStatus: true
                                 echo "Test Exit Code: ${testExitCode}"
                                 if (testExitCode != 0) {
                                     // echo "Some tests failed in ${suite} from ${testSuite}, but continuing..."
