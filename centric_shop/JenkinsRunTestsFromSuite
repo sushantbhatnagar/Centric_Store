@@ -35,11 +35,11 @@ pipeline {
 
           for (int i = 0; i < suites.size(); i++) {
             def suite = suites[i]
-            def fileContent = readFile "${suite}"
-            def testSuite = fileContent
+            def testSuite = readFile "${suite}"
+            //def testSuite = fileContent
 
-            println "Running tests from ${suite} with feature file ${testSuite}"
-            sh "cucumber ${testSuite}"
+            println "Running tests with feature file ${testSuite} from ${suite}"
+            sh "cucumber ${testSuite} --tags '@functional'"
            }
          }
        }
