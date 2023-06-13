@@ -38,7 +38,7 @@ pipeline {
             def testSuite = fileContent
 
             println "Running tests from ${suite} with feature file ${testSuite}"
-            sh "cucumber -p grid ${testSuite}"
+            sh "cucumber ${testSuite}"
            }
          }
        }
