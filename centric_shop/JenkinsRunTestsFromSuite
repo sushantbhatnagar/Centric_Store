@@ -92,7 +92,7 @@ pipeline {
                         }
                     }
                 }
-                stage('Suite 1'){
+                stage('Suite 2'){
                     // agent { label 'slave2' }
                     steps {
                         script {
