@@ -36,9 +36,7 @@ pipeline {
                     for (int i = 0; i < suites.size(); i++) {
                         def suite = suites[i]
                         def testSuite = readFile "${suite}"
-                        //def testSuite = fileContent
-
-                        println "Running tests with feature file ${testSuite} from ${suite}"
+                        println "--- Running suite ${suite} containing feature file ${testSuite} ---"
                         def testExitCode = sh script: "bundle exec cucumber ${testSuite} --tags '@functional'", returnStatus: true
                         echo "Test Exit Code: ${testExitCode}"
                         if (testExitCode != 0) {
@@ -78,21 +76,23 @@ pipeline {
                     // agent { label 'slave1' }
                     steps {
                         dir('centric_shop'){
-
                         script {
                             // Retrieve the suite group 1 from environment variable
                             def suitesGroup1 = env.GROUP1.split(',')
                             // Run the test cases from suite group 1 on the Jenkins slave
-                            for (def suite1 : suitesGroup1) {
-                                echo "Suite name is : ${suite1}"
+                            for (def suite : suitesGroup1) {
                                 echo "SuiteGroup is : ${suitesGroup1}"
-                                def testSuite1 = readFile "${suite1}"
-                                echo "TestSuite content is: ${testSuite1}"
-                                def testExitCode = sh script: "bundle exec cucumber ${testSuite1} --tags '@functional'", returnStatus: true
+                                echo "Suite name is : ${suite}"
+
+                                def testSuite = readFile "${suite}"
+                                echo "TestSuite content is: ${testSuite}"
+
+                                println "--- Running suite ${suite} containing feature file ${testSuite} ---"
+                                def testExitCode = sh script: "bundle exec cucumber ${testSuite} --tags '@functional'", returnStatus: true
                                 echo "Test Exit Code: ${testExitCode}"
+
                                 if (testExitCode != 0) {
-                                    // echo "Some tests failed in ${suite} from ${testSuite}, but continuing..."
-                                    echo "Continuing..."
+                                    echo "Some tests failed in ${suite} from feature file ${testSuite}, but continuing..."
                                 }
                             }
                         }
@@ -105,18 +105,20 @@ pipeline {
                         script {
                             // Retrieve the suite group 2 from environment variable
                             def suitesGroup2 = env.GROUP2.split(',')
-                            // Run the test cases from suite group 1 on the Jenkins slave
-                            for (def suite2 : suitesGroup2) {
-                                echo "Suite name is : ${suite2}"
+                            // Run the test cases from suite group 2 on the Jenkins slave
+                            for (def suite : suitesGroup2) {
                                 echo "SuiteGroup is : ${suitesGroup2}"
-                                def testSuite2 = readFile "${suite2}"
-                                echo "TestSuite content is: ${testSuite2}"
+                                echo "Suite name is : ${suite}"
 
-                                def testExitCode = sh script: "bundle exec cucumber ${testSuite2} --tags '@functional'", returnStatus: true
+                                def testSuite = readFile "${suite}"
+                                echo "TestSuite content is: ${testSuite}"
+
+                                println "--- Running suite ${suite} containing feature file ${testSuite} ---"
+                                def testExitCode = sh script: "bundle exec cucumber ${testSuite} --tags '@functional'", returnStatus: true
                                 echo "Test Exit Code: ${testExitCode}"
+
                                 if (testExitCode != 0) {
-                                    // echo "Some tests failed in ${suite} from ${testSuite}, but continuing..."
-                                    echo "Continuing..."
+                                    echo "Some tests failed in ${suite} from feature file ${testSuite}, but continuing..."
                                 }
                             }
                         }
