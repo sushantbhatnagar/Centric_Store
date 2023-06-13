@@ -82,9 +82,10 @@ pipeline {
                         dir('centric_shop'){
                         script {
                             sh 'bundle install'
-                            sh 'su slave'
                             sh 'Xvfb :1 -screen 0 1600x1200x16 &'
                             sh 'export DISPLAY=:1.0'
+                            sh 'su slave'
+
                             // Retrieve the suite group 1 from environment variable
                             def suitesGroup1 = env.GROUP1.split(',')
                             // Run the test cases from suite group 1 on the Jenkins slave
@@ -116,9 +117,9 @@ pipeline {
                         dir('centric_shop'){
                         script {
                             sh 'bundle install'
-                            sh 'su slave'
                             sh 'Xvfb :1 -screen 0 1600x1200x16 &'
                             sh 'export DISPLAY=:1.0'
+                            sh 'su slave'
 
                             // Retrieve the suite group 2 from environment variable
                             def suitesGroup2 = env.GROUP2.split(',')
