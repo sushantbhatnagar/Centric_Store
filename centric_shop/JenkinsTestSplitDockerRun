@@ -63,8 +63,16 @@ pipeline {
                       // Store the suite groupings as environment variables
                       env.GROUP1 = group1.join(',')
                       echo "${env.GROUP1}"
+
+                      // Stash the env.Group1 value
+                      stash includes: 'env.GROUP1', name: 'Group1'
+
                       env.GROUP2 = group2.join(',')
                       echo "${env.GROUP2}"
+
+                      // Stash the env.Group2 value
+                      stash includes: 'env.GROUP2', name: 'Group2'
+
                     }
                 }
             }
@@ -87,6 +95,7 @@ pipeline {
                             sh 'su slave'
 
                             // Retrieve the suite group 1 from environment variable
+                            unstash 'Group1'
                             def suitesGroup1 = env.GROUP1.split(',')
                             // Run the test cases from suite group 1 on the Jenkins slave
                             for (def suite : suitesGroup1) {
@@ -122,6 +131,7 @@ pipeline {
                             sh 'su slave'
 
                             // Retrieve the suite group 2 from environment variable
+                            unstash 'Group2'
                             def suitesGroup2 = env.GROUP2.split(',')
                             // Run the test cases from suite group 2 on the Jenkins slave
                             for (def suite : suitesGroup2) {
