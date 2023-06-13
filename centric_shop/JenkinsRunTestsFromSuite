@@ -101,7 +101,6 @@ pipeline {
                 stage('Suite 2'){
                     // agent { label 'slave2' }
                     steps {
-
                         dir('centric_shop'){
                         script {
                             // Retrieve the suite group 2 from environment variable
@@ -109,7 +108,7 @@ pipeline {
                             // Run the test cases from suite group 1 on the Jenkins slave
                             for (def suite2 : suitesGroup2) {
                                 echo "Suite name is : ${suite2}"
-                                echo "SuiteGroup is : ${suitesGroup1}"
+                                echo "SuiteGroup is : ${suitesGroup2}"
                                 def testSuite2 = readFile "${suite2}"
                                 echo "TestSuite content is: ${testSuite2}"
 
