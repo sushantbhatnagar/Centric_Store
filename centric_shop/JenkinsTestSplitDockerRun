@@ -24,7 +24,7 @@ pipeline {
         }
     }
 
-        stage('Create Test Suites Again'){
+        stage('Create Test Suites'){
             steps {
                 dir('centric_shop'){
                     script {
@@ -39,22 +39,10 @@ pipeline {
 
                       // Store the suite groupings as environment variables
                       env.GROUP1 = group1.join(',')
-                      echo "${env.GROUP1}"
-
-                      // Stash the env.Group1 value
-                      //stash includes: 'env.GROUP1', name: 'Group1'
-                      //stash includes: 'group1', name: 'testGroup1'
-
                       env.GROUP2 = group2.join(',')
-                      echo "${env.GROUP2}"
 
-                      echo "Present working directory"
-                      sh 'pwd'
+                      // Stashing the entire working directory to be used later in docker containers slaves - /var/jenkins_home/workspace/DivideAndConquerWdDockerSlaves/centric_shop
                       stash('source')
-
-                      // Stash the env.Group2 value
-                      //stash includes: 'env.GROUP2', name: 'Group2'
-                      //stash includes: 'group2', name: 'testGroup2'
 
                     }
                 }
@@ -75,10 +63,10 @@ pipeline {
                             sh 'bundle install'
                             sh 'Xvfb :1 -screen 0 1600x1200x16 &'
                             sh 'export DISPLAY=:1.0'
-                            //unstash 'Group1'
+
+                            // Un-stashing the directories into this docker container
                             unstash 'source'
-                            //echo "Unstashed Value of Group 1 is : ${env.GROUP1}"
-                            //echo "Unstashed Value of Group 11 is : ${testGroup1}"
+
                             sh 'su slave'
 
                             // Retrieve the suite group 1 from environment variable
@@ -114,10 +102,10 @@ pipeline {
                             sh 'bundle install'
                             sh 'Xvfb :1 -screen 0 1600x1200x16 &'
                             sh 'export DISPLAY=:1.0'
-                            //unstash 'Group2'
+
+                            // Un-stashing the source in other docker-container, run as a slave
                             unstash 'source'
-                            //echo "Unstashed Value of Group 2 is : ${env.GROUP2}"
-                            //echo "Unstashed Value of Group 22 is : ${testGroup2}"
+
                             sh 'su slave'
 
                             // Retrieve the suite group 2 from environment variable
