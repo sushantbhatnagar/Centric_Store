@@ -43,6 +43,7 @@ pipeline {
             steps {
                     dir('centric_shop') {
                     script {
+                      echo "Retrieving tests from the queues..."
                       sh 'ruby retrieve_suites_from_queue.rb'
                     }
                 }
