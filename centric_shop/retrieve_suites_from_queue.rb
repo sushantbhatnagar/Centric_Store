@@ -3,7 +3,7 @@ require 'yaml'
 
 
 # Connect to RabbitMQ
-connection = Bunny.new
+connection = Bunny.new(hostname: 'rabbitmq', port: 5672, username: 'guest', password: 'guest')
 connection.start
 
 # Create a channel
