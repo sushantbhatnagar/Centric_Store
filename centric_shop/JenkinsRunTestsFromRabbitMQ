@@ -1,0 +1,58 @@
+pipeline {
+    agent any
+
+    stages {
+        stage('Install Dependencies') {
+            steps {
+                dir('centric_shop') {
+                script {
+                // Install bundle and change the user
+                    sh 'bundle install'
+                    sh 'su jenkins'
+                }
+            }
+        }
+     }
+
+        stage('Divide Scenarios to Test Suites') {
+            steps {
+                dir('centric_shop') {
+                script {
+                    sh 'fetch_scenario_names.rb'
+                    echo "Test Suite 1"
+                    sh 'cat test_suite_1_to_queue'
+
+                    echo "Test Suite 2"
+                    sh 'cat test_suite_2_to_queue'
+                }
+            }
+        }
+    }
+
+        stage('Send Scenarios to RabbitMQ') {
+            steps {
+                dir('centric_shop') {
+                script {
+                    sh 'ruby send_suites_to_queue.rb'
+                }
+             }
+           }
+        }
+
+        stage('Start RabbitMQ Consumer') {
+            steps {
+                    dir('centric_shop') {
+                    script {
+                      sh 'ruby retrieve_suites_from_queue.rb'
+                    }
+                }
+            }
+        }
+
+        post {
+            success {
+                echo "All stages executed successfully..."
+            }
+        }
+    }
+}

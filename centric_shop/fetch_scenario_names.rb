@@ -26,7 +26,6 @@ end
 def divide_scenarios_into_test_suites(scenarios)
   shuffled_scenarios = scenarios.shuffle
   mid_index = shuffled_scenarios.length/2
-
   test_suite_1 = shuffled_scenarios[0...mid_index]
   test_suite_2 = shuffled_scenarios[mid_index..]
 
