@@ -5,7 +5,7 @@ require 'gherkin/parser'
 require 'gherkin/pickles/compiler'
 
 # RabbitMQ connection settings
-connection = Bunny.new
+connection = Bunny.new(hostname: 'rabbitmq', port: 5672, username: 'guest', password: 'guest')
 connection.start
 
 # RabbitMQ channel and queues settings
