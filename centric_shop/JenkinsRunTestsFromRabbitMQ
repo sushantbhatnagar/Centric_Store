@@ -18,7 +18,7 @@ pipeline {
             steps {
                 dir('centric_shop') {
                 script {
-                    sh 'fetch_scenario_names.rb'
+                    sh 'ruby fetch_scenario_names.rb'
                     echo "Test Suite 1"
                     sh 'cat test_suite_1_to_queue'
 
