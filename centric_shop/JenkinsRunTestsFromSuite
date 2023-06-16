@@ -1,14 +1,9 @@
 pipeline {
     agent any
 
-        def commit_id
-        def build_id
-        def build_user
-        def job_name
-
         environment {
-            build_id = env.BUILD_ID
-            job_name = env.JOB_NAME
+            build_id = "${env.BUILD_ID}"
+            job_name = "${env.JOB_NAME}"
         }
 
     stages {
