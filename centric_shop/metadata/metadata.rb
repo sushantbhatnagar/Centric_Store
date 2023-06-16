@@ -26,7 +26,13 @@ class Metadata
   def set_base_data(world = nil)
     user = `whoami`.chomp.gsub('centricconsulti\\', '')
     environment_url = FigNewton.test_env
-    puts "PRINTING ENV VALUE - #{ENV['BUILD_ID']}"
+    # build_id = "#{ENV['BUILD_ID']}" || 'local'
+    # puts "#{build_id}"
+    if ENV['BUILD_ID'] != nil
+      build_id = "#{ENV['BUILD_ID']}"
+    else
+      build_id = "local"
+    end
 
     @content ||= {}
     # @config ||= []
@@ -40,8 +46,8 @@ class Metadata
       browser: ENV['BROWSER'],
       operating_system: ENV['OS'],
       suite_id: @suite_id,
-      pipeline_id: "pipeline_run_#{ENV['BUILD_ID']}"
-      # suite_run_by: user.gsub('.',' ')
+      pipeline_id: "pipeline_run_#{build_id}",
+      suite_run_by: user.gsub('.',' ')
     )
   end
 
