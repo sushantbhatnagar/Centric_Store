@@ -3,11 +3,17 @@ node {
     // Declare Global variable
     def commit_id
     def build_id
+    def build_user
+    def job_name
+
+    environment {
+        build_id = env.BUILD_ID
+        build_user = env.BUILD_USER
+        job_name = env.JOB_NAME
+    }
 
     // Prepare the test harness
     stage('Preparation') {
-        build_id = env.BUILD_ID
-        echo "${build_id}"
         checkout scmGit(branches: [[name: '*/zalenium']], extensions: [], userRemoteConfigs: [[credentialsId: 'githubSecrets', url: 'https://github.com/sushantbhatnagar/Centric_Store.git']])
         sh "git rev-parse --short HEAD > .git/commit-id"
         commit_id = readFile('.git/commit-id').trim()
