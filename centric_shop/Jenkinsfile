@@ -8,13 +8,11 @@ node {
 
     environment {
         build_id = env.BUILD_ID
-        build_user = env.CHANGE_AUTHOR
         job_name = env.JOB_NAME
     }
 
     // Prepare the test harness
     stage('Preparation') {
-        echo "${build_user}"
         checkout scmGit(branches: [[name: '*/zalenium']], extensions: [], userRemoteConfigs: [[credentialsId: 'githubSecrets', url: 'https://github.com/sushantbhatnagar/Centric_Store.git']])
         sh "git rev-parse --short HEAD > .git/commit-id"
         commit_id = readFile('.git/commit-id').trim()

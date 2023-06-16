@@ -29,7 +29,7 @@ class Metadata
 
     job_name = ENV['JOB_NAME'] != nil ? "Jenkins - #{ENV['JOB_NAME']}" : 'Local System'
     build_id = ENV['BUILD_ID'] != nil ? "Pipeline Build # #{ENV['BUILD_ID']}" : 'local'
-    user_name = ENV['CHANGE_AUTHOR '] != nil ? "#{ENV['CHANGE_AUTHOR ']}" : user.gsub('.',' ')
+    # user_name = ENV['CHANGE_AUTHOR '] != nil ? "#{ENV['CHANGE_AUTHOR ']}" : user.gsub('.',' ')
 
     @content ||= {}
     # @config ||= []
@@ -45,7 +45,7 @@ class Metadata
       suite_id: @suite_id,
       job_name: "#{job_name}",
       pipeline_id: "#{build_id}",
-      suite_run_by: user_name
+      suite_run_by: user.gsub('.',' ')
     )
   end
 
