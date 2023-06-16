@@ -39,16 +39,16 @@ pipeline {
            }
         }
 
-        stage('Retrieve Scenarios from RabbitMQ') {
-            steps {
-                    dir('centric_shop') {
-                    script {
-                      echo "Retrieving tests from the queues..."
-                      sh 'ruby retrieve_suites_from_queue.rb'
-                    }
-                }
-            }
-        }
+        //stage('Retrieve Scenarios from RabbitMQ') {
+            //steps {
+              //      dir('centric_shop') {
+                //    script {
+                  //    echo "Retrieving tests from the queues..."
+                    //  sh 'ruby retrieve_suites_from_queue.rb'
+                    //}
+               // }
+            //}
+        //}
 
 }
 

@@ -23,13 +23,13 @@ suite_2 = "#{Dir.pwd}/test_suite_2_to_queue"
 suites = [suite_1, suite_2]
 
 # Retrieve scenarios from RabbitMQ message queues
-# def retrieve_scenarios_from_queue(queue)
-#   scenarios = []
-#   queue.subscribe(block: true) do |_delivery_info, _properties, payload|
-#     scenarios << YAML.load(payload)
-#     puts "Retrieving #{YAML.load(payload)} from #{queue.name}"
-#   end
-# end
+def retrieve_scenarios_from_queue(queue)
+  scenarios = []
+  queue.subscribe(block: true) do |_delivery_info, _properties, payload|
+    scenarios << YAML.load(payload)
+    puts "Retrieving #{YAML.load(payload)} from #{queue.name}"
+  end
+end
 
 
 # Read feature files and divide test cases into two test suites
@@ -51,7 +51,7 @@ suites.each do |suite|
 end
 
 # Retrieve scenarios from the RabbitMQ queues
-# retrieve_scenarios_from_queue(queue1)
+retrieve_scenarios_from_queue(queue1)
 # retrieve_scenarios_from_queue(queue2)
 
 # Close the RabbitMQ connection
