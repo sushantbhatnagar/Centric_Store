@@ -8,7 +8,7 @@ node {
 
     environment {
         build_id = env.BUILD_ID
-        build_user = env.BUILD_USER
+        build_user = env.CHANGE_AUTHOR
         job_name = env.JOB_NAME
     }
 
