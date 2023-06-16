@@ -7,6 +7,7 @@ node {
     // Prepare the test harness
     stage('Preparation') {
         build_id = env.BUILD_ID
+        echo "${build_id}"
         checkout scmGit(branches: [[name: '*/zalenium']], extensions: [], userRemoteConfigs: [[credentialsId: 'githubSecrets', url: 'https://github.com/sushantbhatnagar/Centric_Store.git']])
         sh "git rev-parse --short HEAD > .git/commit-id"
         commit_id = readFile('.git/commit-id').trim()

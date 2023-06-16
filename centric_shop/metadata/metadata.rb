@@ -26,6 +26,7 @@ class Metadata
   def set_base_data(world = nil)
     user = `whoami`.chomp.gsub('centricconsulti\\', '')
     environment_url = FigNewton.test_env
+    puts "PRINTING ENV VALUE - #{ENV['BUILD_ID']}"
     @content ||= {}
     # @config ||= []
     @content.merge!(
