@@ -31,7 +31,6 @@ class Metadata
     build_id = ENV['BUILD_ID'] != nil ? "Pipeline Build # #{ENV['BUILD_ID']}" : 'local'
     user_name = ENV['CHANGE_AUTHOR '] != nil ? "#{ENV['CHANGE_AUTHOR ']}" : user.gsub('.',' ')
 
-
     @content ||= {}
     # @config ||= []
     @content.merge!(
