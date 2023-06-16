@@ -27,10 +27,8 @@ class Metadata
     user = `whoami`.chomp.gsub('centricconsulti\\', '')
     environment_url = FigNewton.test_env
 
-    puts "Job Name #{ENV['JOB_NAME']}"
-
-    build_id = ENV['BUILD_ID'] != nil ? "#{ENV['BUILD_ID']}" : 'local'
-    job_name = ENV['JOB_NAME'] != nil ? "on_#{ENV['JOB_NAME']}" : ''
+    job_name = ENV['JOB_NAME'] != nil ? "Jenkins- #{ENV['JOB_NAME']}" : 'Local System'
+    build_id = ENV['BUILD_ID'] != nil ? "Pipeline# #{ENV['BUILD_ID']}" : 'local'
     user_name = ENV['BUILD_USER'] != nil ? "#{ENV['BUILD_USER']}" : user.gsub('.',' ')
 
 
@@ -46,7 +44,8 @@ class Metadata
       browser: ENV['BROWSER'],
       operating_system: ENV['OS'],
       suite_id: @suite_id,
-      pipeline_id: "pipeline_run_#{build_id} #{job_name}",
+      job_name: "#{job_name}",
+      pipeline_id: "#{build_id}",
       suite_run_by: user_name
     )
   end
