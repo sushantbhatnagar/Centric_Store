@@ -39,7 +39,7 @@ pipeline {
            }
         }
 
-        stage('Start RabbitMQ Consumer') {
+        stage('Retrieve Scenarios from RabbitMQ') {
             steps {
                     dir('centric_shop') {
                     script {
@@ -48,11 +48,13 @@ pipeline {
                     }
                 }
             }
-        }}
+        }
 
-        post {
-            success {
-                echo "All stages executed successfully..."
-            }
+}
+
+    post {
+        success {
+            echo "All stages executed successfully..."
         }
     }
+}
