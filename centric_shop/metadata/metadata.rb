@@ -38,7 +38,8 @@ class Metadata
       browser: ENV['BROWSER'],
       operating_system: ENV['OS'],
       suite_id: @suite_id,
-      suite_run_by: user.gsub('.',' ')
+      suite_pipeline_id: ENV['BUILD_ID']
+      # suite_run_by: user.gsub('.',' ')
     )
   end
 
