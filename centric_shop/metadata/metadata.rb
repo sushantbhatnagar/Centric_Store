@@ -27,6 +27,7 @@ class Metadata
     user = `whoami`.chomp.gsub('centricconsulti\\', '')
     environment_url = FigNewton.test_env
     puts "PRINTING ENV VALUE - #{ENV['BUILD_ID']}"
+
     @content ||= {}
     # @config ||= []
     @content.merge!(
@@ -39,7 +40,7 @@ class Metadata
       browser: ENV['BROWSER'],
       operating_system: ENV['OS'],
       suite_id: @suite_id,
-      pipeline_id: ENV['BUILD_ID']
+      pipeline_id: "pipeline_run_#{ENV['BUILD_ID']}"
       # suite_run_by: user.gsub('.',' ')
     )
   end
