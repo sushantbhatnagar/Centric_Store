@@ -2,7 +2,7 @@ module URLHelper
   class << self
     def elastic_search_url
       # 'http://localhost'
-      'http://192.168.1.72'
+      'http://172.21.192.1'
     end
 
     def elastic_search_port
@@ -10,7 +10,7 @@ module URLHelper
     end
 
     def grid_url
-      'http://192.168.1.72:4444/wd/hub'
+      'http://172.21.192.1:4444/wd/hub'
     end
 
   end
