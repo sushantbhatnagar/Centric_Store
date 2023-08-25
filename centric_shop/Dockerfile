@@ -94,9 +94,9 @@ ENV PATH="/usr/local/bin:${PATH}"
 ENV LANG C.UTF-8
 
 # Set up a user
-RUN useradd -ms /bin/bash slave
-RUN usermod -aG sudo slave
-USER slave
+RUN useradd -ms /bin/bash agent
+RUN usermod -aG sudo agent
+USER agent
 
 # Set the working directory
 #WORKDIR /app
